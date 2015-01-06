@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Linux 服务器配置 | Houny&#39;Blog</title>
+    <title>Android使用相机 | Houny&#39;Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Houny Chang">
     
-    <meta name="description" content="这里介绍在Linux服务器上配置JDK,MySQL。以后再Linux上用的其他配置也会更新在这里。">
+    <meta name="description" content="这里介绍在Android相机相关开发中可能遇到的一些问题，和完整代码分享">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="Houny_Chang" />
-    <meta name="twitter:title" content="Linux 服务器配置 | Houny&#39;Blog" />
+    <meta name="twitter:title" content="Android使用相机 | Houny&#39;Blog" />
       
     
     
@@ -72,15 +72,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/09/25/Config-Linux-Java-and-MySQL/" title="Linux 服务器配置" itemprop="url">Linux 服务器配置</a>
+      <a href="/2015/01/06/Android使用相机/" title="Android使用相机" itemprop="url">Android使用相机</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://plus.google.com/102868947447771410000?rel=author" title="Houny Chang" target="_blank" itemprop="author">Houny Chang</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-09-25T03:48:56.000Z" itemprop="datePublished">9月 25 2014</time>
-    更新日期:<time datetime="2014-09-25T04:01:33.000Z" itemprop="dateModified">9月 25 2014</time>
+    <time datetime="2015-01-06T07:36:02.000Z" itemprop="datePublished">1月 6 2015</time>
+    更新日期:<time datetime="2015-01-06T07:43:56.000Z" itemprop="dateModified">1月 6 2015</time>
     
   </p>
 </header>
@@ -89,155 +89,35 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK"><span class="toc-number">1.</span> <span class="toc-text">JDK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL"><span class="toc-number">2.</span> <span class="toc-text">MySQL</span></a></li></ol>
+		
 		</div>
 		
-		<p>  这里介绍在Linux服务器上配置JDK,MySQL。以后再Linux上用的其他配置也会更新在这里。<br><a id="more"></a></p>
-<h3 id="JDK">JDK</h3>
+		<p>  这里介绍在Android相机相关开发中可能遇到的一些问题，和完整代码分享<br><a id="more"></a></p>
 <ol>
-<li>下载JDK</li>
-<li><code>rpm -ivh jdk-7u25-linux-x64.rpm</code></li>
-<li>编辑环境变量 <code>gedit /etc/profile</code><br>添加下面的值<blockquote>
-<p>export JAVA_HOME=/usr/java/jdk-1.7.0.25<br>export CLASSPATH=.:\$JAVA_HOME/lib:\$JAVA_HOME/lib/rt.jar<br>export PATH=\$PATH:\$JAVA_HOME/bin:\$JAVA_HOME/jre/bin</p>
-</blockquote>
-</li>
-<li>重新载入配置<code>source /etc/profile</code></li>
+<li>设置预览和保存图像的方向</li>
 </ol>
-<hr>
-<h3 id="MySQL">MySQL</h3>
-<ol>
-<li><p>先卸载已安装的MySQL</p>
-<ul>
-<li><p>先把系统里安装的所有mysql找出来<br><code>#rpm -qa | grep -i mysql</code><br>运行此命令后，显示所有列表：</p>
-<blockquote>
-<p>mysqlclient10-3.23.58-4.RHEL4.1<br>mysqlclient10-devel-3.23.58-4.RHEL4.1</p>
-</blockquote>
-</li>
-<li><p>将列表一一强制删除：<br><code>#rpm -ev --nodeps mysqlclient10-3.23.58-4.RHEL4.1</code><br><code>#rpm -ev --nodeps mysqlclient10-devel-3.23.58-4.RHEL4.1</code></p>
-</li>
-<li><p>将老版本的几个文件手工删除：<br><code>#rpm -f /etc/my.cnf</code><br><code>#rpm -rf /usr/var/lib/mysql</code></p>
-<blockquote>
-<p>如果报错可以用cat命令看看有没有</p>
-</blockquote>
-</li>
-<li><p><code>cd</code> 到<code>usr</code>目录下<code>rm</code><strong>所有与mysql相关文件</strong></p>
-</li>
-</ul>
-</li>
-<li><p>安装 Server和Client</p>
-<ul>
-<li>安装<strong>Server</strong><br><code>#rpm -ivh MySQL-server-community-5.0.45-0.rhel4.i386.rpm</code></li>
-<li>安装<strong>Client</strong>，<em>用于命令行下操作mysql</em>：<br><code>#rpm -ivh MySQL-client-community-5.0.45-0.rhel4.i386.rpm</code></li>
-</ul>
-</li>
-<li><p>配置防火墙允许<strong>3306</strong>端口通过</p>
-<ul>
-<li>打开防火墙配置文件<br><code>vi /etc/sysconfig/iptables</code></li>
-<li>添加3306<br><code>-A RH-Firewall-1-INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT</code></li>
-<li>重启防火墙<br><code>service iptables restart</code></li>
-</ul>
-</li>
-<li><p>修改<strong>hosts</strong>文件</p>
-<ul>
-<li>打开hosts文件<br><code>vi /etc/hosts</code></li>
-<li>修改localhost<br><code>127.0.0.1 localhost</code></li>
-</ul>
-</li>
-<li><p>修改<strong>MySQL密码</strong></p>
-<ul>
-<li><strong>停用</strong>mysql服务：<br>  <code>/etc/rc.d/init.d/mysqld stop</code></li>
-<li>输入命令：<br>  <code># mysqld_safe --user=mysql --skip-grant-tables --skip-networking &amp;</code> </li>
-<li>登入数据库：<br><code># mysql -u root mysql</code></li>
-<li><p>进入MySQL数据库<br><code>mysql&gt; use mysql;</code></p>
-<blockquote>
-<p><em>返回：</em><br>Database changed </p>
-</blockquote>
-</li>
-<li><p>修改密码<br>  <code>mysql&gt; UPDATE user SET Password=PASSWORD(&#39;root&#39;)where USER=&#39;root&#39;;</code></p>
-<blockquote>
-<p><em>返回：</em><br>Query OK, 3 rows affected (0.00 sec)<br>Rows matched: 3  Changed: 3  Warnings: 0</p>
-</blockquote>
-</li>
-<li><p>刷新<br>  <code>mysql&gt;FLUSH PRIVILEGES;</code> </p>
-<blockquote>
-<p><em>返回：</em><br>Query OK, 0 rows affected (0.00 sec) </p>
-</blockquote>
-</li>
-<li><p>退出<br>  <code>mysql&gt; quit</code> </p>
-</li>
-<li>重新启动MySQL<br><code># /sbin/service mysql restart</code></li>
-</ul>
-</li>
-<li><p>新增MySQL用户</p>
-<ul>
-<li><p>登陆<br><code># mysql -u toot –p</code></p>
-<blockquote>
-<p>Enter password:<code>root</code><br>mysql&gt;<em>&lt;登录成功&gt;</em></p>
-</blockquote>
-</li>
-<li><p>再次设置密码才可以新增用户</p>
-<blockquote>
-<p>mysql><code>UPDATE user SET Password=PASSWORD(&#39;root&#39;) where USER=&#39;root&#39;;</code></p>
-</blockquote>
-</li>
-<li><p>刷新</p>
-<blockquote>
-<p>mysql> <code>FLUSH PRIVILEGES;</code></p>
-</blockquote>
-</li>
-<li><p>退出<br><code>mysql&gt; quit</code></p>
-</li>
-<li><p>新增本地用户</p>
-</li>
-<li>新增用于IP登陆的用户</li>
-</ul>
-</li>
-<li><p>新建<strong>/etc/my.cnf</strong></p>
-<ul>
-<li>如果<strong><em>/usr/share/mysql</em></strong>目录下有<strong><em>.cnf</em></strong>文件则拷贝到<strong><em>etc</em></strong>下并改名为<code>my.cnf</code></li>
-<li><p>没有则新建一个</p>
-<blockquote>
-<p># The MySQL server<br>  [mysqld]<br>  port            = 3306<br>  socket          = /var/lib/mysql/mysql.sock<br>  skip-external-locking<br>  key_buffer_size = 16M<br>  max_allowed_packet = 1M<br>  table_open_cache = 64<br>  sort_buffer_size = 512K<br>  net_buffer_length = 8K<br>  read_buffer_size = 256K<br>  read_rnd_buffer_size = 512K<br>  myisam_sort_buffer_size = 8M<br>  #add here</p>
-</blockquote>
-</li>
-<li><p>新增一句使MySQL不区分大小写</p>
-<blockquote>
-<p>lower_case_table_names=1</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>导入表</p>
-<ul>
-<li>新建用户<br><code>mysql -uroot -p[root的密码]</code></li>
-<li>新建用户及授权 (用户名：<strong><em>smart</em></strong>，密码：<strong><em>smart</em></strong>)<br><code>create user smart@&#39;%&#39; identified by &#39;smart&#39;;</code><br><code>create user smart@localhost identified by &#39;smart&#39;;</code><br><code>grant all on *.* to smart;</code></li>
-<li>创建数据库<br><code>create database smart;</code></li>
-<li>退出<br><code>exit;</code></li>
-</ul>
-</li>
-<li>导入数据库<br> <code>mysql -usmart -psmart;</code><br> <code>use smart</code><br> <code>source 数据库文件.dmp的地址;</code></li>
-<li>导出数据库（以后做数据移动时，将数据导出时使用）<br><code>mysqldump -usmart -psmart -h服务器地址 smart --default-character-set=utf8  --hex-blob &gt;数据库导出文件地址</code></li>
-</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//STEP #1: Get rotation degrees</span></div><div class="line">Camera.CameraInfo info = new Camera.CameraInfo();</div><div class="line">Camera.getCameraInfo(Camera.CameraInfo.CAMERA_FACING_BACK, info);</div><div class="line"><span class="keyword">int</span> rotation = context.getWindowManager().getDefaultDisplay().getRotation();</div><div class="line"><span class="keyword">int</span> <span class="built_in">degrees</span> = <span class="number">0</span>;</div><div class="line"><span class="keyword">switch</span> (rotation) {</div><div class="line">    <span class="keyword">case</span> Surface.ROTATION_0: <span class="built_in">degrees</span> = <span class="number">0</span>; <span class="keyword">break</span>; <span class="comment">//Natural orientation</span></div><div class="line">        <span class="keyword">case</span> Surface.ROTATION_90: <span class="built_in">degrees</span> = <span class="number">90</span>; <span class="keyword">break</span>; <span class="comment">//Landscape left</span></div><div class="line">        <span class="keyword">case</span> Surface.ROTATION_180: <span class="built_in">degrees</span> = <span class="number">180</span>; <span class="keyword">break</span>;<span class="comment">//Upside down</span></div><div class="line">        <span class="keyword">case</span> Surface.ROTATION_270: <span class="built_in">degrees</span> = <span class="number">270</span>; <span class="keyword">break</span>;<span class="comment">//Landscape right</span></div><div class="line">    }</div><div class="line"><span class="keyword">int</span> rotate = (info.orientation - <span class="built_in">degrees</span> + <span class="number">360</span>) % <span class="number">360</span>;</div><div class="line">	</div><div class="line"><span class="comment">//STEP #2: Set the 'rotation' parameter</span></div><div class="line">Camera.Parameters params = camera.getParameters();</div><div class="line">params.setRotation(rotate); <span class="comment">//保存时的图像竖着</span></div><div class="line">camera.setDisplayOrientation(rotate);<span class="comment">//预览图像竖着</span></div><div class="line">camera.setParameters(params);</div></pre></td></tr></table></figure>
+
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Linux/">Linux</a><a href="/tags/Java/">Java</a>
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Camera/">Camera</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hounychang.github.io/2014/09/25/Config-Linux-Java-and-MySQL/" data-title="Linux 服务器配置 | Houny&#39;Blog" data-tsina="半斤砒霜下肚" class="share clearfix">
+  <div data-url="http://hounychang.github.io/2015/01/06/Android使用相机/" data-title="Android使用相机 | Houny&#39;Blog" data-tsina="半斤砒霜下肚" class="share clearfix">
   </div>
 
 </div>
@@ -246,19 +126,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/01/06/Android使用相机/" title="Android使用相机">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Android使用相机</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/09/24/Android-Annotation-使用/"  title="Android Annotation 使用">
+<a href="/2014/09/25/Config-Linux-Java-and-MySQL/"  title="Linux 服务器配置">
  <strong>NEXT:</strong><br/> 
- <span>Android Annotation 使用
+ <span>Linux 服务器配置
 </span>
 </a>
 </div>
@@ -275,7 +147,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK"><span class="toc-number">1.</span> <span class="toc-text">JDK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL"><span class="toc-number">2.</span> <span class="toc-text">MySQL</span></a></li></ol>
+  
   </div>
 
 <div id="asidepart">
