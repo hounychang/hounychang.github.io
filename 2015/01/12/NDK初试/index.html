@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Android使用相机 | Houny&#39;Blog</title>
+    <title>NDK初试 | Houny&#39;Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Houny Chang">
     
-    <meta name="description" content="这里介绍在Android相机相关开发中可能遇到的一些问题，和完整代码分享">
+    <meta name="description" content="初步使用NDK，这篇文章里从环境搭建，到运行helloWorld。没有更深的内容，只适合从来没有玩过NDK的同学看。详细内容待补…">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="Houny_Chang" />
-    <meta name="twitter:title" content="Android使用相机 | Houny&#39;Blog" />
+    <meta name="twitter:title" content="NDK初试 | Houny&#39;Blog" />
       
     
     
@@ -72,15 +72,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/06/Android使用相机/" title="Android使用相机" itemprop="url">Android使用相机</a>
+      <a href="/2015/01/12/NDK初试/" title="NDK初试" itemprop="url">NDK初试</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://plus.google.com/102868947447771410000?rel=author" title="Houny Chang" target="_blank" itemprop="author">Houny Chang</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-01-06T07:36:02.000Z" itemprop="datePublished">1月 6 2015</time>
-    更新日期:<time datetime="2015-01-06T07:43:56.000Z" itemprop="dateModified">1月 6 2015</time>
+    <time datetime="2015-01-12T09:32:22.000Z" itemprop="datePublished">1月 12 2015</time>
+    更新日期:<time datetime="2015-01-12T09:37:50.000Z" itemprop="dateModified">1月 12 2015</time>
     
   </p>
 </header>
@@ -89,35 +89,46 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-number">1.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建议"><span class="toc-number">2.</span> <span class="toc-text">建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello_World"><span class="toc-number">3.</span> <span class="toc-text">Hello World</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小技巧"><span class="toc-number">4.</span> <span class="toc-text">小技巧</span></a></li></ol>
 		</div>
 		
-		<p>  这里介绍在Android相机相关开发中可能遇到的一些问题，和完整代码分享<br><a id="more"></a></p>
+		<p>初步使用NDK，这篇文章里从环境搭建，到运行helloWorld。没有更深的内容，只适合从来没有玩过NDK的同学看。<br>详细内容待补…<br><a id="more"></a></p>
+<h2 id="环境搭建">环境搭建</h2>
 <ol>
-<li>设置预览和保存图像的方向</li>
+<li>CDT插件安装</li>
+<li>cygwin安装</li>
+<li>NDK安装</li>
 </ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//STEP #1: Get rotation degrees</span></div><div class="line">Camera.CameraInfo info = new Camera.CameraInfo();</div><div class="line">Camera.getCameraInfo(Camera.CameraInfo.CAMERA_FACING_BACK, info);</div><div class="line"><span class="keyword">int</span> rotation = context.getWindowManager().getDefaultDisplay().getRotation();</div><div class="line"><span class="keyword">int</span> <span class="built_in">degrees</span> = <span class="number">0</span>;</div><div class="line"><span class="keyword">switch</span> (rotation) {</div><div class="line">    <span class="keyword">case</span> Surface.ROTATION_0: <span class="built_in">degrees</span> = <span class="number">0</span>; <span class="keyword">break</span>; <span class="comment">//Natural orientation</span></div><div class="line">        <span class="keyword">case</span> Surface.ROTATION_90: <span class="built_in">degrees</span> = <span class="number">90</span>; <span class="keyword">break</span>; <span class="comment">//Landscape left</span></div><div class="line">        <span class="keyword">case</span> Surface.ROTATION_180: <span class="built_in">degrees</span> = <span class="number">180</span>; <span class="keyword">break</span>;<span class="comment">//Upside down</span></div><div class="line">        <span class="keyword">case</span> Surface.ROTATION_270: <span class="built_in">degrees</span> = <span class="number">270</span>; <span class="keyword">break</span>;<span class="comment">//Landscape right</span></div><div class="line">    }</div><div class="line"><span class="keyword">int</span> rotate = (info.orientation - <span class="built_in">degrees</span> + <span class="number">360</span>) % <span class="number">360</span>;</div><div class="line">	</div><div class="line"><span class="comment">//STEP #2: Set the 'rotation' parameter</span></div><div class="line">Camera.Parameters params = camera.getParameters();</div><div class="line">params.setRotation(rotate); <span class="comment">//保存时的图像竖着</span></div><div class="line">camera.setDisplayOrientation(rotate);<span class="comment">//预览图像竖着</span></div><div class="line">camera.setParameters(params);</div></pre></td></tr></table></figure>
-
+<h2 id="建议">建议</h2>
+<ol>
+<li>复习C/C++</li>
+<li>先看NDK里的docs</li>
+<li>再看NDK里的samples</li>
+</ol>
+<h2 id="Hello_World">Hello World</h2>
+<ol>
+<li>创建普通Android项目<blockquote>
+<p>注意一定<strong><em>不要</em></strong>创建带有下划线的项目</p>
+</blockquote>
+</li>
+<li>新建C文件</li>
+</ol>
+<h2 id="小技巧">小技巧</h2>
   
 	</div>
 		<footer class="article-footer clearfix">
 
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Camera/">Camera</a>
-  </div>
-
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Android/">Android</a>
+  <a class="article-category-link" href="/categories/NDK/">NDK</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://hounychang.github.io/2015/01/06/Android使用相机/" data-title="Android使用相机 | Houny&#39;Blog" data-tsina="半斤砒霜下肚" class="share clearfix">
+  <div data-url="http://hounychang.github.io/2015/01/12/NDK初试/" data-title="NDK初试 | Houny&#39;Blog" data-tsina="半斤砒霜下肚" class="share clearfix">
   </div>
 
 </div>
@@ -126,19 +137,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/01/12/NDK初试/" title="NDK初试">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  NDK初试</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/09/25/Config-Linux-Java-and-MySQL/"  title="Linux 服务器配置">
+<a href="/2015/01/06/Android使用相机/"  title="Android使用相机">
  <strong>NEXT:</strong><br/> 
- <span>Linux 服务器配置
+ <span>Android使用相机
 </span>
 </a>
 </div>
@@ -155,7 +158,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-number">1.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建议"><span class="toc-number">2.</span> <span class="toc-text">建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello_World"><span class="toc-number">3.</span> <span class="toc-text">Hello World</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小技巧"><span class="toc-number">4.</span> <span class="toc-text">小技巧</span></a></li></ol>
   </div>
 
 <div id="asidepart">
