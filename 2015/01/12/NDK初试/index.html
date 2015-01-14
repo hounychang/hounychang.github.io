@@ -9,7 +9,7 @@
     
     <meta name="author" content="Houny Chang">
     
-    <meta name="description" content="初步使用NDK，这篇文章里从环境搭建，到运行helloWorld。没有更深的内容，只适合从来没有玩过NDK的同学看。详细内容待补…">
+    <meta name="description" content="初步使用NDK，这篇文章里从环境搭建，到运行helloWorld。没有更深的内容，只适合从来没有玩过NDK的同学看。">
     
     
     
@@ -18,6 +18,8 @@
     <meta name="twitter:title" content="NDK初试 | Houny&#39;Blog" />
       
     
+    
+    <link rel="alternate" href="/atom.xml" title="Houny&#39;Blog" type="application/atom+xml">
     
     
     <link rel="icon" href="/img/favicon.ico">
@@ -54,15 +56,11 @@
 					
 					<li>
 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:hounychang.github.io">
-					</form>
+
 					
 					</li>
 				</ul>
-			</nav>			
+			</nav>
 </div>
 
     </header>
@@ -80,7 +78,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-01-12T09:32:22.000Z" itemprop="datePublished">1月 12 2015</time>
-    更新日期:<time datetime="2015-01-12T09:37:50.000Z" itemprop="dateModified">1月 12 2015</time>
+    更新日期:<time datetime="2015-01-14T02:31:40.000Z" itemprop="dateModified">1月 14 2015</time>
     
   </p>
 </header>
@@ -92,12 +90,28 @@
 		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-number">1.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建议"><span class="toc-number">2.</span> <span class="toc-text">建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello_World"><span class="toc-number">3.</span> <span class="toc-text">Hello World</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小技巧"><span class="toc-number">4.</span> <span class="toc-text">小技巧</span></a></li></ol>
 		</div>
 		
-		<p>初步使用NDK，这篇文章里从环境搭建，到运行helloWorld。没有更深的内容，只适合从来没有玩过NDK的同学看。<br>详细内容待补…<br><a id="more"></a></p>
+		<p>初步使用NDK，这篇文章里从环境搭建，到运行helloWorld。没有更深的内容，只适合从来没有玩过NDK的同学看。<br><a id="more"></a></p>
 <h2 id="环境搭建">环境搭建</h2>
+<blockquote>
+<p>从NDKr8开始NDK中内置了Windows环境下的ndk-build，不需要再安装cygwin这个玩意了。值得庆幸…</p>
+</blockquote>
 <ol>
-<li>CDT插件安装</li>
-<li>cygwin安装</li>
-<li>NDK安装</li>
+<li>CDT插件安装<ul>
+<li>到<a href="https://eclipse.org/cdt/downloads.php" target="_blank" rel="external">CDT官网</a>获取插件下载地址</li>
+<li>Eclipse中 <code>Help-Install New Software-Add</code></li>
+<li>添加下载地址</li>
+<li>选择<code>CDT Main Features</code>分组下的<code>C/C++ Development Tools</code>和<code>C/C++ Development Tools SDK</code>两个插件，其他的不需要安装。</li>
+</ul>
+</li>
+<li>NDK安装<ul>
+<li>科学上网进入 <a href="http://developer.android.com/tools/sdk/ndk/index.html" target="_blank" rel="external">NDK下载官网</a></li>
+<li>下载正确版本并双击自动解压</li>
+<li>把解压后或者你拷贝后的路径添加到环境变量</li>
+<li>例如我的路径是<code>E:\AndroidNDK</code></li>
+<li>在cmd里测试 <code>ndk-build</code></li>
+<li>测试不成功说明你的环境变量没加对</li>
+</ul>
+</li>
 </ol>
 <h2 id="建议">建议</h2>
 <ol>
@@ -114,9 +128,30 @@
 <li>新建C文件</li>
 </ol>
 <h2 id="小技巧">小技巧</h2>
+<ul>
+<li>准确创建c文件方法名<blockquote>
+<p>创建Activity的时候先不要继承Activity，先像下面那样写<br>把native方法写出来之后，cmd切换至 bin/class目录，执行<br><code>javah com.houny.helloworld.TestJNI</code><br>这个命令会在class根据了帮你生成一个.h头文件，方法名也在里面了。<br>如果你在TestJNI.java里使用了中文，请使用<br><code>javah -encoding utf-8 com.houny.helloworld.TestJNI</code></p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.houny.helloworld;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestJNI</span> </span>{</div><div class="line">	<span class="keyword">public</span> <span class="keyword">native</span> String <span class="title">testJNI</span>();</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<ul>
+<li>使用LOG<blockquote>
+<p>c文件里其实也是可以像普通java代码一样使用android提供的log的。使用方法如下,不过log内容只能是英文的。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;stdio.h&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;jni.h&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span>"com_example_ndk_MainActivity.h"</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;android/log.h&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> LOG_TAG "System.out.c"</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)</span></div><div class="line"></div><div class="line">JNIEXPORT jstring JNICALL Java_com_example_ndk_MainActivity_javaFromJNI(</div><div class="line">		JNIEnv* env, jobject obj) {</div><div class="line">	<span class="keyword">return</span> (*env)-&gt;NewStringUTF(env, <span class="string">"hello jni!"</span>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> * Class:     com_example_ndk_MainActivity</div><div class="line"> * Method:    java_From_JNI</div><div class="line"> * Signature: ()Ljava/lang/String;</div><div class="line"> */</div><div class="line">JNIEXPORT jstring JNICALL Java_com_example_ndk_MainActivity_java_1From_1JNI(</div><div class="line">		JNIEnv* env, jobject obj) {</div><div class="line"></div><div class="line">	LOGI(<span class="string">"function called"</span>);</div><div class="line">	LOGI(<span class="string">"array init"</span>);</div><div class="line">	<span class="keyword">char</span> c1[<span class="number">3</span>] = { <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span> };</div><div class="line">	<span class="keyword">char</span> c2[<span class="number">2</span>] = { <span class="string">'d'</span>, <span class="string">'e'</span> };</div><div class="line">	LOGI(<span class="string">"array init finish"</span>);</div><div class="line">	LOGI(<span class="string">"copy array"</span>);</div><div class="line">	<span class="built_in">strcat</span>(c1, c2); <span class="comment">//把c2的内容放在c1的后面，要求c1长度&gt;c2长度</span></div><div class="line">	LOGI(<span class="string">"copy array finish"</span>);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> (*env)-&gt;NewStringUTF(env, <span class="string">"hello_jni__"</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
+
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/NDK-JNI/">NDK JNI</a>
+  </div>
 
 
 <div class="article-categories">
@@ -183,7 +218,7 @@
 
 
   <div class="rsspart">
-	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>

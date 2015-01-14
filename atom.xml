@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Houny'Blog]]></title>
+  <subtitle><![CDATA[All in my heart.]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://hounychang.github.io/"/>
+  <updated>2015-01-14T03:27:45.534Z</updated>
+  <id>http://hounychang.github.io/</id>
+  
+  <author>
+    <name><![CDATA[Houny Chang]]></name>
+    <email><![CDATA[hounychang@gmail.com]]></email>
+  </author>
+  
+  <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[NDK初试]]></title>
+    <link href="http://hounychang.github.io/2015/01/12/NDK%E5%88%9D%E8%AF%95/"/>
+    <id>http://hounychang.github.io/2015/01/12/NDK初试/</id>
+    <published>2015-01-12T09:32:22.000Z</published>
+    <updated>2015-01-14T02:31:40.000Z</updated>
+    <content type="html"><![CDATA[<p>初步使用NDK，这篇文章里从环境搭建，到运行helloWorld。没有更深的内容，只适合从来没有玩过NDK的同学看。<br><a id="more"></a></p>
+<h2 id="环境搭建">环境搭建</h2>
+<blockquote>
+<p>从NDKr8开始NDK中内置了Windows环境下的ndk-build，不需要再安装cygwin这个玩意了。值得庆幸…</p>
+</blockquote>
+<ol>
+<li>CDT插件安装<ul>
+<li>到<a href="https://eclipse.org/cdt/downloads.php" target="_blank" rel="external">CDT官网</a>获取插件下载地址</li>
+<li>Eclipse中 <code>Help-Install New Software-Add</code></li>
+<li>添加下载地址</li>
+<li>选择<code>CDT Main Features</code>分组下的<code>C/C++ Development Tools</code>和<code>C/C++ Development Tools SDK</code>两个插件，其他的不需要安装。</li>
+</ul>
+</li>
+<li>NDK安装<ul>
+<li>科学上网进入 <a href="http://developer.android.com/tools/sdk/ndk/index.html" target="_blank" rel="external">NDK下载官网</a></li>
+<li>下载正确版本并双击自动解压</li>
+<li>把解压后或者你拷贝后的路径添加到环境变量</li>
+<li>例如我的路径是<code>E:\AndroidNDK</code></li>
+<li>在cmd里测试 <code>ndk-build</code></li>
+<li>测试不成功说明你的环境变量没加对</li>
+</ul>
+</li>
+</ol>
+<h2 id="建议">建议</h2>
+<ol>
+<li>复习C/C++</li>
+<li>先看NDK里的docs</li>
+<li>再看NDK里的samples</li>
+</ol>
+<h2 id="Hello_World">Hello World</h2>
+<ol>
+<li>创建普通Android项目<blockquote>
+<p>注意一定<strong><em>不要</em></strong>创建带有下划线的项目</p>
+</blockquote>
+</li>
+<li>新建C文件</li>
+</ol>
+<h2 id="小技巧">小技巧</h2>
+<ul>
+<li>准确创建c文件方法名<blockquote>
+<p>创建Activity的时候先不要继承Activity，先像下面那样写<br>把native方法写出来之后，cmd切换至 bin/class目录，执行<br><code>javah com.houny.helloworld.TestJNI</code><br>这个命令会在class根据了帮你生成一个.h头文件，方法名也在里面了。<br>如果你在TestJNI.java里使用了中文，请使用<br><code>javah -encoding utf-8 com.houny.helloworld.TestJNI</code></p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.houny.helloworld;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestJNI</span> </span>{</div><div class="line">	<span class="keyword">public</span> <span class="keyword">native</span> String <span class="title">testJNI</span>();</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<ul>
+<li>使用LOG<blockquote>
+<p>c文件里其实也是可以像普通java代码一样使用android提供的log的。使用方法如下,不过log内容只能是英文的。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;stdio.h&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;jni.h&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span>"com_example_ndk_MainActivity.h"</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;android/log.h&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> LOG_TAG "System.out.c"</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)</span></div><div class="line"></div><div class="line">JNIEXPORT jstring JNICALL Java_com_example_ndk_MainActivity_javaFromJNI(</div><div class="line">		JNIEnv* env, jobject obj) {</div><div class="line">	<span class="keyword">return</span> (*env)-&gt;NewStringUTF(env, <span class="string">"hello jni!"</span>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> * Class:     com_example_ndk_MainActivity</div><div class="line"> * Method:    java_From_JNI</div><div class="line"> * Signature: ()Ljava/lang/String;</div><div class="line"> */</div><div class="line">JNIEXPORT jstring JNICALL Java_com_example_ndk_MainActivity_java_1From_1JNI(</div><div class="line">		JNIEnv* env, jobject obj) {</div><div class="line"></div><div class="line">	LOGI(<span class="string">"function called"</span>);</div><div class="line">	LOGI(<span class="string">"array init"</span>);</div><div class="line">	<span class="keyword">char</span> c1[<span class="number">3</span>] = { <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span> };</div><div class="line">	<span class="keyword">char</span> c2[<span class="number">2</span>] = { <span class="string">'d'</span>, <span class="string">'e'</span> };</div><div class="line">	LOGI(<span class="string">"array init finish"</span>);</div><div class="line">	LOGI(<span class="string">"copy array"</span>);</div><div class="line">	<span class="built_in">strcat</span>(c1, c2); <span class="comment">//把c2的内容放在c1的后面，要求c1长度&gt;c2长度</span></div><div class="line">	LOGI(<span class="string">"copy array finish"</span>);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> (*env)-&gt;NewStringUTF(env, <span class="string">"hello_jni__"</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>初步使用NDK，这篇文章里从环境搭建，到运行helloWorld。没有更深的内容，只适合从来没有玩过NDK的同学看。<br>]]>
+    
+    </summary>
+    
+      <category term="NDK JNI" scheme="http://hounychang.github.io/tags/NDK-JNI/"/>
+    
+      <category term="NDK" scheme="http://hounychang.github.io/categories/NDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android使用相机]]></title>
+    <link href="http://hounychang.github.io/2015/01/06/Android%E4%BD%BF%E7%94%A8%E7%9B%B8%E6%9C%BA/"/>
+    <id>http://hounychang.github.io/2015/01/06/Android使用相机/</id>
+    <published>2015-01-06T07:36:02.000Z</published>
+    <updated>2015-01-06T07:43:56.000Z</updated>
+    <content type="html"><![CDATA[<p>  这里介绍在Android相机相关开发中可能遇到的一些问题，和完整代码分享<br><a id="more"></a></p>
+<ol>
+<li>设置预览和保存图像的方向</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//STEP #1: Get rotation degrees</span></div><div class="line">Camera.CameraInfo info = new Camera.CameraInfo();</div><div class="line">Camera.getCameraInfo(Camera.CameraInfo.CAMERA_FACING_BACK, info);</div><div class="line"><span class="keyword">int</span> rotation = context.getWindowManager().getDefaultDisplay().getRotation();</div><div class="line"><span class="keyword">int</span> <span class="built_in">degrees</span> = <span class="number">0</span>;</div><div class="line"><span class="keyword">switch</span> (rotation) {</div><div class="line">    <span class="keyword">case</span> Surface.ROTATION_0: <span class="built_in">degrees</span> = <span class="number">0</span>; <span class="keyword">break</span>; <span class="comment">//Natural orientation</span></div><div class="line">        <span class="keyword">case</span> Surface.ROTATION_90: <span class="built_in">degrees</span> = <span class="number">90</span>; <span class="keyword">break</span>; <span class="comment">//Landscape left</span></div><div class="line">        <span class="keyword">case</span> Surface.ROTATION_180: <span class="built_in">degrees</span> = <span class="number">180</span>; <span class="keyword">break</span>;<span class="comment">//Upside down</span></div><div class="line">        <span class="keyword">case</span> Surface.ROTATION_270: <span class="built_in">degrees</span> = <span class="number">270</span>; <span class="keyword">break</span>;<span class="comment">//Landscape right</span></div><div class="line">    }</div><div class="line"><span class="keyword">int</span> rotate = (info.orientation - <span class="built_in">degrees</span> + <span class="number">360</span>) % <span class="number">360</span>;</div><div class="line">	</div><div class="line"><span class="comment">//STEP #2: Set the 'rotation' parameter</span></div><div class="line">Camera.Parameters params = camera.getParameters();</div><div class="line">params.setRotation(rotate); <span class="comment">//保存时的图像竖着</span></div><div class="line">camera.setDisplayOrientation(rotate);<span class="comment">//预览图像竖着</span></div><div class="line">camera.setParameters(params);</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>  这里介绍在Android相机相关开发中可能遇到的一些问题，和完整代码分享<br>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://hounychang.github.io/tags/Android/"/>
+    
+      <category term="Camera" scheme="http://hounychang.github.io/tags/Camera/"/>
+    
+      <category term="Android" scheme="http://hounychang.github.io/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Linux 服务器配置]]></title>
+    <link href="http://hounychang.github.io/2014/09/25/Config-Linux-Java-and-MySQL/"/>
+    <id>http://hounychang.github.io/2014/09/25/Config-Linux-Java-and-MySQL/</id>
+    <published>2014-09-25T03:48:56.000Z</published>
+    <updated>2014-09-25T04:01:33.000Z</updated>
+    <content type="html"><![CDATA[<p>  这里介绍在Linux服务器上配置JDK,MySQL。以后再Linux上用的其他配置也会更新在这里。<br><a id="more"></a></p>
+<h3 id="JDK">JDK</h3>
+<ol>
+<li>下载JDK</li>
+<li><code>rpm -ivh jdk-7u25-linux-x64.rpm</code></li>
+<li>编辑环境变量 <code>gedit /etc/profile</code><br>添加下面的值<blockquote>
+<p>export JAVA_HOME=/usr/java/jdk-1.7.0.25<br>export CLASSPATH=.:\$JAVA_HOME/lib:\$JAVA_HOME/lib/rt.jar<br>export PATH=\$PATH:\$JAVA_HOME/bin:\$JAVA_HOME/jre/bin</p>
+</blockquote>
+</li>
+<li>重新载入配置<code>source /etc/profile</code></li>
+</ol>
+<hr>
+<h3 id="MySQL">MySQL</h3>
+<ol>
+<li><p>先卸载已安装的MySQL</p>
+<ul>
+<li><p>先把系统里安装的所有mysql找出来<br><code>#rpm -qa | grep -i mysql</code><br>运行此命令后，显示所有列表：</p>
+<blockquote>
+<p>mysqlclient10-3.23.58-4.RHEL4.1<br>mysqlclient10-devel-3.23.58-4.RHEL4.1</p>
+</blockquote>
+</li>
+<li><p>将列表一一强制删除：<br><code>#rpm -ev --nodeps mysqlclient10-3.23.58-4.RHEL4.1</code><br><code>#rpm -ev --nodeps mysqlclient10-devel-3.23.58-4.RHEL4.1</code></p>
+</li>
+<li><p>将老版本的几个文件手工删除：<br><code>#rpm -f /etc/my.cnf</code><br><code>#rpm -rf /usr/var/lib/mysql</code></p>
+<blockquote>
+<p>如果报错可以用cat命令看看有没有</p>
+</blockquote>
+</li>
+<li><p><code>cd</code> 到<code>usr</code>目录下<code>rm</code><strong>所有与mysql相关文件</strong></p>
+</li>
+</ul>
+</li>
+<li><p>安装 Server和Client</p>
+<ul>
+<li>安装<strong>Server</strong><br><code>#rpm -ivh MySQL-server-community-5.0.45-0.rhel4.i386.rpm</code></li>
+<li>安装<strong>Client</strong>，<em>用于命令行下操作mysql</em>：<br><code>#rpm -ivh MySQL-client-community-5.0.45-0.rhel4.i386.rpm</code></li>
+</ul>
+</li>
+<li><p>配置防火墙允许<strong>3306</strong>端口通过</p>
+<ul>
+<li>打开防火墙配置文件<br><code>vi /etc/sysconfig/iptables</code></li>
+<li>添加3306<br><code>-A RH-Firewall-1-INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT</code></li>
+<li>重启防火墙<br><code>service iptables restart</code></li>
+</ul>
+</li>
+<li><p>修改<strong>hosts</strong>文件</p>
+<ul>
+<li>打开hosts文件<br><code>vi /etc/hosts</code></li>
+<li>修改localhost<br><code>127.0.0.1 localhost</code></li>
+</ul>
+</li>
+<li><p>修改<strong>MySQL密码</strong></p>
+<ul>
+<li><strong>停用</strong>mysql服务：<br>  <code>/etc/rc.d/init.d/mysqld stop</code></li>
+<li>输入命令：<br>  <code># mysqld_safe --user=mysql --skip-grant-tables --skip-networking &amp;</code> </li>
+<li>登入数据库：<br><code># mysql -u root mysql</code></li>
+<li><p>进入MySQL数据库<br><code>mysql&gt; use mysql;</code></p>
+<blockquote>
+<p><em>返回：</em><br>Database changed </p>
+</blockquote>
+</li>
+<li><p>修改密码<br>  <code>mysql&gt; UPDATE user SET Password=PASSWORD(&#39;root&#39;)where USER=&#39;root&#39;;</code></p>
+<blockquote>
+<p><em>返回：</em><br>Query OK, 3 rows affected (0.00 sec)<br>Rows matched: 3  Changed: 3  Warnings: 0</p>
+</blockquote>
+</li>
+<li><p>刷新<br>  <code>mysql&gt;FLUSH PRIVILEGES;</code> </p>
+<blockquote>
+<p><em>返回：</em><br>Query OK, 0 rows affected (0.00 sec) </p>
+</blockquote>
+</li>
+<li><p>退出<br>  <code>mysql&gt; quit</code> </p>
+</li>
+<li>重新启动MySQL<br><code># /sbin/service mysql restart</code></li>
+</ul>
+</li>
+<li><p>新增MySQL用户</p>
+<ul>
+<li><p>登陆<br><code># mysql -u toot –p</code></p>
+<blockquote>
+<p>Enter password:<code>root</code><br>mysql&gt;<em>&lt;登录成功&gt;</em></p>
+</blockquote>
+</li>
+<li><p>再次设置密码才可以新增用户</p>
+<blockquote>
+<p>mysql><code>UPDATE user SET Password=PASSWORD(&#39;root&#39;) where USER=&#39;root&#39;;</code></p>
+</blockquote>
+</li>
+<li><p>刷新</p>
+<blockquote>
+<p>mysql> <code>FLUSH PRIVILEGES;</code></p>
+</blockquote>
+</li>
+<li><p>退出<br><code>mysql&gt; quit</code></p>
+</li>
+<li><p>新增本地用户</p>
+</li>
+<li>新增用于IP登陆的用户</li>
+</ul>
+</li>
+<li><p>新建<strong>/etc/my.cnf</strong></p>
+<ul>
+<li>如果<strong><em>/usr/share/mysql</em></strong>目录下有<strong><em>.cnf</em></strong>文件则拷贝到<strong><em>etc</em></strong>下并改名为<code>my.cnf</code></li>
+<li><p>没有则新建一个</p>
+<blockquote>
+<p># The MySQL server<br>  [mysqld]<br>  port            = 3306<br>  socket          = /var/lib/mysql/mysql.sock<br>  skip-external-locking<br>  key_buffer_size = 16M<br>  max_allowed_packet = 1M<br>  table_open_cache = 64<br>  sort_buffer_size = 512K<br>  net_buffer_length = 8K<br>  read_buffer_size = 256K<br>  read_rnd_buffer_size = 512K<br>  myisam_sort_buffer_size = 8M<br>  #add here</p>
+</blockquote>
+</li>
+<li><p>新增一句使MySQL不区分大小写</p>
+<blockquote>
+<p>lower_case_table_names=1</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>导入表</p>
+<ul>
+<li>新建用户<br><code>mysql -uroot -p[root的密码]</code></li>
+<li>新建用户及授权 (用户名：<strong><em>smart</em></strong>，密码：<strong><em>smart</em></strong>)<br><code>create user smart@&#39;%&#39; identified by &#39;smart&#39;;</code><br><code>create user smart@localhost identified by &#39;smart&#39;;</code><br><code>grant all on *.* to smart;</code></li>
+<li>创建数据库<br><code>create database smart;</code></li>
+<li>退出<br><code>exit;</code></li>
+</ul>
+</li>
+<li>导入数据库<br> <code>mysql -usmart -psmart;</code><br> <code>use smart</code><br> <code>source 数据库文件.dmp的地址;</code></li>
+<li>导出数据库（以后做数据移动时，将数据导出时使用）<br><code>mysqldump -usmart -psmart -h服务器地址 smart --default-character-set=utf8  --hex-blob &gt;数据库导出文件地址</code></li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>  这里介绍在Linux服务器上配置JDK,MySQL。以后再Linux上用的其他配置也会更新在这里。<br>]]>
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://hounychang.github.io/tags/Linux/"/>
+    
+      <category term="Java" scheme="http://hounychang.github.io/tags/Java/"/>
+    
+      <category term="Linux" scheme="http://hounychang.github.io/categories/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android Annotation 使用]]></title>
+    <link href="http://hounychang.github.io/2014/09/24/Android-Annotation-%E4%BD%BF%E7%94%A8/"/>
+    <id>http://hounychang.github.io/2014/09/24/Android-Annotation-使用/</id>
+    <published>2014-09-24T10:26:52.000Z</published>
+    <updated>2014-09-25T04:05:19.000Z</updated>
+    <content type="html"><![CDATA[<p>这里将介绍大家怎么在Android Studio下使用著名的Android Annotation框架<br><a id="more"></a></p>
+<h3 id="Android_Studio配置">Android Studio配置</h3>
+<p> <strong>1.</strong>修改应用的<code>build.gradle</code>文件 <strong><em>注意是应用的不是整个项目的</em></strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'com.android.application'</span></div><div class="line"></div><div class="line"><span class="comment">//Copy Begin---从这里开始复制----</span></div><div class="line">apply plugin: <span class="string">'android-apt'</span><span class="comment">//添加使用apt插件</span></div><div class="line"><span class="keyword">def</span> AAVersion = <span class="string">'3.0.1'</span><span class="comment">//这里设置AA的版本号</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">buildscript</span> {</div><div class="line">    <span class="keyword">repositories</span> {</div><div class="line">        mavenCentral()</div><div class="line">    }</div><div class="line">    <span class="keyword">dependencies</span> {</div><div class="line">        <span class="comment">//这里设置gradle的版本</span></div><div class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:0.12.2'</span></div><div class="line">        <span class="comment">//这里设置apt的版本</span></div><div class="line">        <span class="keyword">classpath</span> <span class="string">'com.neenbedankt.gradle.plugins:android-apt:1.+'</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">repositories</span> {</div><div class="line">    mavenCentral()</div><div class="line">    mavenLocal()</div><div class="line">}</div><div class="line"></div><div class="line">apt {</div><div class="line">    arguments {</div><div class="line">        androidManifestFile variant.processResources.manifestFile</div><div class="line">        resourcePackageName <span class="string">'com.houny.androidannotations'</span><span class="comment">//TODO 注意这里要设置当前项目的包名</span></div><div class="line"></div><div class="line"><span class="comment">//        logLevel 'ERROR'</span></div><div class="line"><span class="comment">//        logFile '/var/log/houny.log'</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//Copy End---一直复制到这里，注意上面的TODO处的包名----</span></div><div class="line"></div><div class="line">android {</div><div class="line">    compileSdkVersion <span class="number">19</span></div><div class="line">    buildToolsVersion <span class="string">"19.1.0"</span></div><div class="line"></div><div class="line">    defaultConfig {</div><div class="line">        applicationId <span class="string">"com.houny.androidannotations"</span></div><div class="line">        minSdkVersion <span class="number">14</span></div><div class="line">        targetSdkVersion <span class="number">19</span></div><div class="line">        versionCode <span class="number">1</span></div><div class="line">        versionName <span class="string">"1.0"</span></div><div class="line">    }</div><div class="line">    buildTypes {</div><div class="line">        release {</div><div class="line">            runProguard <span class="keyword">false</span></div><div class="line">            proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">dependencies</span> {</div><div class="line">    <span class="keyword">compile</span> <span class="keyword">fileTree</span>(dir: <span class="string">'libs'</span>, <span class="keyword">include</span>: [<span class="string">'*.jar'</span>])</div><div class="line">    <span class="comment">//Copy Begin-------从这里开始复制--------------</span></div><div class="line">    apt <span class="string">"org.androidannotations:androidannotations:$AAVersion"</span></div><div class="line">    <span class="keyword">compile</span> <span class="string">"org.androidannotations:androidannotations-api:$AAVersion"</span></div><div class="line">    <span class="comment">//Copy End--------一直复制到这里-------------</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>2.</strong> 在<code>AndroidManifest.xml</code>中注册Activity的时候在最后加上<code>_</code>符号</p>
+<blockquote>
+<p>android:name=”.activity.MainActivity_”</p>
+<p>可能会显示红色报错，只要点击<code>Build</code>—<code>Rebuild Project</code>就可以了</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>这里将介绍大家怎么在Android Studio下使用著名的Android Annotation框架<br>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://hounychang.github.io/tags/Android/"/>
+    
+      <category term="Annotation" scheme="http://hounychang.github.io/tags/Annotation/"/>
+    
+      <category term="Android" scheme="http://hounychang.github.io/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[My First Post]]></title>
+    <link href="http://hounychang.github.io/2014/09/24/My-First-Post/"/>
+    <id>http://hounychang.github.io/2014/09/24/My-First-Post/</id>
+    <published>2014-09-24T07:56:19.000Z</published>
+    <updated>2014-09-25T03:57:30.000Z</updated>
+    <content type="html"><![CDATA[<p><code>Hello World</code><br><a id="more"></a><br>This is my first post.So,just <strong>Hello World</strong>.</p>
+<h3 id="中文">中文</h3>
+<p>今天学习了一下<a href="http://hexo.io" target="_blank" rel="external">Hexo</a>自己也在Github上弄了一个blog，也算是顺应潮流吧。</p>
+<h3 id="The_End">The End</h3>
+<blockquote>
+<p>一切福田，不离方寸；从心而觅，感无不通。命由我作，福自己求。</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><code>Hello World</code><br>]]>
+    
+    </summary>
+    
+      <category term="Other" scheme="http://hounychang.github.io/tags/Other/"/>
+    
+      <category term="Me" scheme="http://hounychang.github.io/categories/Me/"/>
+    
+  </entry>
+  
+</feed>
