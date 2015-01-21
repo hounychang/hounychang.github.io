@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: undefined | Houny&#39;Blog</title>
+  <title>Ubuntu 14 安装Openfire | Houny&#39;Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="All in my heart.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://hounychang.github.io/categories/index.html">
+  <meta name="description" content="这里介绍怎么在Ubuntu上安装配置Openfire，包括 JDK安装、MySql安装，全套的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 14 安装Openfire">
+<meta property="og:url" content="http://hounychang.github.io/2015/01/21/Ubuntu-14-安装Openfire/">
 <meta property="og:site_name" content="Houny'Blog">
-<meta property="og:description" content="All in my heart.">
+<meta property="og:description" content="这里介绍怎么在Ubuntu上安装配置Openfire，包括 JDK安装、MySql安装，全套的。">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="All in my heart.">
+<meta name="twitter:title" content="Ubuntu 14 安装Openfire">
+<meta name="twitter:description" content="这里介绍怎么在Ubuntu上安装配置Openfire，包括 JDK安装、MySql安装，全套的。">
 
   
     <link rel="alternative" href="/atom.xml" title="Houny&#39;Blog" type="application/atom+xml">
@@ -170,14 +170,20 @@
 		</header>				
 	</div>
 </nav>
-      <article id="categories-undefined" class="article article-type-categories" itemscope itemprop="blogPost">
+      <article id="post-Ubuntu-14-安装Openfire" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/categories/index.html" class="article-date">
-  	<time datetime="2015-01-06T07:28:40.000Z" itemprop="datePublished">1月 6 2015</time>
+      <a href="/2015/01/21/Ubuntu-14-安装Openfire/" class="article-date">
+  	<time datetime="2015-01-21T07:17:43.000Z" itemprop="datePublished">1月 21 2015</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/IM/">IM</a>
+  </div>
+
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu-JDK-Openfire/">Ubuntu JDK Openfire</a></li></ul>
+
     </div>
   
   <div class="article-inner">
@@ -189,7 +195,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      categories
+      Ubuntu 14 安装Openfire
     </h1>
   
 
@@ -197,12 +203,46 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>这里介绍怎么在Ubuntu上安装配置Openfire，包括 JDK安装、MySql安装，全套的。<br><a id="more"></a></p>
+<h2 id="环境配置">环境配置</h2>
+<h3 id="JAVA_环境">JAVA 环境</h3>
+<ol>
+<li>先用<code>java -version</code> 测试看看是不是已经安装了java了，安装了就跳过，没安装继续。</li>
+<li>下载 <code>jdk</code>。因为ubuntu默认是不认rpm，需要下载<code>.tar.gz</code>的压缩包形式的文件进行安装</li>
+<li>到 <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">Oracle JDK 官网</a>下载对应版本的jdk</li>
+<li>如果你用的是vps或者其他类型的远程主机，通过xftp传过去。如果不是，跳过这一步</li>
+<li><p>解压 tar.gz 文件 命令是<code>tar zxvf FileName.tar.gz</code></p>
+<blockquote>
+<p>把 FileName.tar.gz 替换成你的文件名</p>
+</blockquote>
+</li>
+<li><p>拷贝到<code>/usr/lib/java</code> 目录下。<code>sudo mv /yourPath/jdk1.8.0_25 /usr/lib/java/</code></p>
+<blockquote>
+<p>记得先去 <code>/usr/lib</code>下创建 <code>java</code>文件夹<br>下文中遇到 <code>jdk1.8.0_25</code> 这个路径是因为我 解压后就是这个文件名，我没有改，就以这个为例吧。</p>
+</blockquote>
+</li>
+<li>切换到 /etc/profile.d/路径下 <code>cd /etc/profile.d/</code></li>
+<li>新建 <code>oraclejdk.sh</code>文件 <code>sudo vim oraclejdk.sh</code></li>
+<li>先写入下面代码，再执行 oraclejdk.sh <code>source /etc/profile.d/oraclejdk.sh</code></li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">export <span class="constant">J2SDKDIR</span>=<span class="regexp">/usr/lib</span><span class="regexp">/java/jdk</span>1.<span class="number">8.0_25</span></div><div class="line">export <span class="constant">J2REDIR</span>=<span class="regexp">/usr/lib</span><span class="regexp">/java/jdk</span>1.<span class="number">8.0_25</span>/jre</div><div class="line">export <span class="constant">PATH</span>=<span class="variable">$PATH</span><span class="symbol">:/usr/lib/java/jdk1</span>.<span class="number">8.0_25</span>/<span class="symbol">bin:</span>/usr/lib/java/jdk1.<span class="number">8.0_25</span>/db/<span class="symbol">bin:</span>/usr/lib/java/jdk1.<span class="number">8.0_25</span>/jre/bin</div><div class="line">export <span class="constant">JAVA_HOME</span>=<span class="regexp">/usr/lib</span><span class="regexp">/java/jdk</span>1.<span class="number">8.0_25</span></div><div class="line">export <span class="constant">DERBY_HOME</span>=<span class="regexp">/usr/lib</span><span class="regexp">/java/jdk</span>1.<span class="number">8.0_25</span>/db</div></pre></td></tr></table></figure>
+
+
       
     </div>
   </div>
   
     
+<nav id="article-nav">
+  
+  
+    <a href="/2015/01/12/NDK初试/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">NDK初试</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
   
 </article>
 
@@ -226,7 +266,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="undefined" data-title="categories" data-url="http://hounychang.github.io/categories/index.html"></div>
+	<div class="ds-thread" data-thread-key="Ubuntu-14-安装Openfire" data-title="Ubuntu 14 安装Openfire" data-url="http://hounychang.github.io/2015/01/21/Ubuntu-14-安装Openfire/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
