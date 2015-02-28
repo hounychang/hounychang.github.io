@@ -4,7 +4,7 @@
   <subtitle><![CDATA[All in my heart.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://hounychang.github.io/"/>
-  <updated>2015-01-21T07:26:14.484Z</updated>
+  <updated>2015-02-28T04:23:49.800Z</updated>
   <id>http://hounychang.github.io/</id>
   
   <author>
@@ -13,6 +13,43 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Unable to add window]]></title>
+    <link href="http://hounychang.github.io/2015/02/28/Unable-to-add-window/"/>
+    <id>http://hounychang.github.io/2015/02/28/Unable-to-add-window/</id>
+    <published>2015-02-28T04:13:14.000Z</published>
+    <updated>2015-02-28T04:23:41.000Z</updated>
+    <content type="html"><![CDATA[<p>  Unable to add window — token android.os.BinderProxy is not valid; is your activity running? 错误分析和解决办法<br><a id="more"></a></p>
+<h2 id="错误原因">错误原因</h2>
+<p><code>Unable to add window — token android.os.BinderProxy is not valid; is your activity running?</code> 就是在你使用Dialog的时候设置的context对象发生了改变，比如说当你的Activity消失了而你的后台异步任务还要显示这个Activity里的Dialog，就会出现这个Bug。</p>
+<h2 id="解决办法">解决办法</h2>
+<ol>
+<li><p>保证你的Dialog显示的时候Activity是Runing的。</p>
+<blockquote>
+<p>我遇到这个问题就是我在上图片的时候，不小心忘记设置上传过程中要一直显示对话框，不让用户返回。这就造成了用户在上传多张图片的过程中可以返回，退出当前Activity，而这时候如果上传有失败的图片，我还想要显示一个Dialog提示上传失败，就出现了这个Error。</p>
+</blockquote>
+</li>
+<li><p>显示Dialog之前判断Activity的状态</p>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(!((Activity) context).isFinishing())</div><div class="line">{</div><div class="line">    <span class="comment">//show dialog</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>  Unable to add window — token android.os.BinderProxy is not valid; is your activity running? 错误分析和解决办法<br>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://hounychang.github.io/tags/Android/"/>
+    
+      <category term="Error" scheme="http://hounychang.github.io/tags/Error/"/>
+    
+      <category term="Dialog" scheme="http://hounychang.github.io/tags/Dialog/"/>
+    
+      <category term="Android" scheme="http://hounychang.github.io/categories/Android/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Ubuntu 14 安装Openfire]]></title>
