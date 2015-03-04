@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android图片处理事项 | Houny&#39;Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这里介绍在Android开发过程中对于图片处理的一些注意事项，并提供一个在用的的图片压缩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android图片处理事项">
+<meta property="og:url" content="http://hounychang.github.io/2015/03/04/Android图片处理事项/">
+<meta property="og:site_name" content="Houny'Blog">
+<meta property="og:description" content="这里介绍在Android开发过程中对于图片处理的一些注意事项，并提供一个在用的的图片压缩">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android图片处理事项">
+<meta name="twitter:description" content="这里介绍在Android开发过程中对于图片处理的一些注意事项，并提供一个在用的的图片压缩">
+
+  
+    <link rel="alternative" href="/atom.xml" title="Houny&#39;Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="http://ww1.sinaimg.cn/large/63bb7aa9jw1eoh2y6kn5fj20ht0ht75p.jpg">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Houny Chang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">All in my heart.</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/hounychang" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/flyend" title="weibo">weibo</a>
+					        
+								<a class="google" target="_blank" href="https://plus.google.com/u/0/102868947447771419910" title="google">google</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/Android/" style="font-size: 20.00px;">Android</a><a href="/tags/Annotation/" style="font-size: 10.00px;">Annotation</a><a href="/tags/Camera/" style="font-size: 10.00px;">Camera</a><a href="/tags/Dialog/" style="font-size: 10.00px;">Dialog</a><a href="/tags/Error/" style="font-size: 10.00px;">Error</a><a href="/tags/Image/" style="font-size: 10.00px;">Image</a><a href="/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/tags/Linux/" style="font-size: 10.00px;">Linux</a><a href="/tags/NDK-JNI/" style="font-size: 10.00px;">NDK JNI</a><a href="/tags/Other/" style="font-size: 10.00px;">Other</a><a href="/tags/Ubuntu-JDK-Openfire/" style="font-size: 10.00px;">Ubuntu JDK Openfire</a><a href="/tags/图片处理/" style="font-size: 10.00px;">图片处理</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					Hello,Welcome to my Blog,I&#39;m Hongnian.Zhang...
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://ww1.sinaimg.cn/large/63bb7aa9jw1eoh2y6kn5fj20ht0ht75p.jpg">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">Houny Chang</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">All in my heart.</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/hounychang" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/flyend" title="weibo">weibo</a>
+			        
+						<a class="google" target="_blank" href="https://plus.google.com/u/0/102868947447771419910" title="google">google</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-Android图片处理事项" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/04/Android图片处理事项/" class="article-date">
+  	<time datetime="2015-03-04T09:14:50.000Z" itemprop="datePublished">3月 4 2015</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Image/">Image</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片处理/">图片处理</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android图片处理事项
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  这里介绍在Android开发过程中对于图片处理的一些注意事项，并提供一个在用的的图片压缩<br><a id="more"></a></p>
+<h1 id="Android图片处理注意事项">Android图片处理注意事项</h1>
+<p>@(Android)[Image|图片处理|Reduce]</p>
+<h3 id="如果只是为了读取图片的宽高属性，要生成一个只有宽高属性的Bitmap">如果只是为了读取图片的宽高属性，要生成一个只有宽高属性的Bitmap</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">BitmapFactory.Options <span class="variable">newOpts =</span> new BitmapFactory.Options();</div><div class="line">      //开始读入图片，只读属性，不全部读入内存，此时把options.inJustDecodeBounds 设回<span class="constant">true</span>了</div><div class="line">      newOpts.<span class="variable">inJustDecodeBounds =</span> <span class="constant">true</span>;</div><div class="line">      //inPurgeable 设为True的话表示使用BitmapFactory创建的Bitmap用于存储Pixel的内存空间在系统内存不足时可以被回收</div><div class="line">      newOpts.<span class="variable">inPurgeable =</span> <span class="constant">true</span>;</div><div class="line">      //inInputShareable与inPurgeable一起使用，如果inPurgeable为<span class="constant">false</span>那该设置将被忽略，如果为<span class="constant">true</span>，那么它可以决定位图是否能够共享一个指向数据源的引用，或者是进行一份拷贝</div><div class="line">      newOpts.<span class="variable">inInputShareable =</span> <span class="constant">true</span>;</div><div class="line">      Bitmap <span class="variable">bitmap =</span> BitmapFactory.decodeFile(srcPath, newOpts);//此时返回bm为空</div><div class="line"></div><div class="line">      int <span class="variable">w =</span> newOpts.outWidth;</div><div class="line">      int <span class="variable">h =</span> newOpts.outHeight;</div></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="三星手机拍照的图片都是横向的">三星手机拍照的图片都是横向的</h3>
+<p>三星手机拍照后图片会有<code>Exif</code>头信息，并且有旋转角度，拍出来的图片都是横屏的，如果想要使用这些图片，需要根据Exif头信息去判断旋转角度，再把图片正过来。<br>因为这个是三星的硬件写入的，所以你如果自定义拍照，只修改<code>Camera.Parameters.setRotation(int)</code>旋转角度是无效的。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">readImageExif</span>(String filePtah) {</div><div class="line">       <span class="keyword">int</span> orientation = -<span class="number">2</span>;</div><div class="line">       <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">       <span class="keyword">try</span> {</div><div class="line">           ExifInterface exif = <span class="keyword">new</span> ExifInterface();</div><div class="line">           exif.readExif(filePtah);</div><div class="line">           orientation = exif.getTagIntValue(ExifInterface.TAG_ORIENTATION);</div><div class="line">           Log.e(<span class="string">"Exif"</span>, <span class="string">"Orientation: "</span> + orientation);</div><div class="line">           <span class="comment">//根据图片头部信息判断需要旋转的角度，</span></div><div class="line">           <span class="comment">//在三星的手机里，会自动在Exif头信息里写入旋转角度，拍照时设置ratation是无效的</span></div><div class="line">           <span class="keyword">switch</span> (orientation) {</div><div class="line">               <span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">                   res = <span class="number">180</span>;</div><div class="line">                   <span class="keyword">break</span>;</div><div class="line">               <span class="keyword">case</span> <span class="number">6</span>:</div><div class="line">                   res = <span class="number">90</span>;</div><div class="line">                   <span class="keyword">break</span>;</div><div class="line">               <span class="keyword">case</span> <span class="number">8</span>:</div><div class="line">                   res = <span class="number">270</span>;</div><div class="line">                   <span class="keyword">break</span>;</div><div class="line"></div><div class="line">           }</div><div class="line">       } <span class="keyword">catch</span> (Exception e) {</div><div class="line">           Log.e(<span class="string">"Exif"</span>, <span class="string">"No Exif info"</span>);</div><div class="line">       }</div><div class="line">       <span class="keyword">return</span> res;</div><div class="line">   }</div></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="图片压缩">图片压缩</h3>
+<p>图片压缩一定要注意<code>主动回收</code>bitmap</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="literal">null</span> != bm && !bm.isRecycled()) {</div><div class="line">              bm.recycle();</div><div class="line">              System.gc();</div><div class="line">          }</div></pre></td></tr></table></figure>
+
+<h5 id="图片压缩代码">图片压缩代码</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="javadoc">/**</span></div><div class="line">   * 压缩到1080宽或高</div><div class="line">   *</div><div class="line">   *<span class="javadoctag"> @param</span> srcPath</div><div class="line">   *<span class="javadoctag"> @return</span></div><div class="line">   */</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> Bitmap <span class="title">getimage</span>(String srcPath) {</div><div class="line">      BitmapFactory.Options newOpts = <span class="keyword">new</span> BitmapFactory.Options();</div><div class="line">      <span class="comment">//开始读入图片，只读属性，不全部读入内存，此时把options.inJustDecodeBounds 设回true了</span></div><div class="line">      newOpts.inJustDecodeBounds = <span class="keyword">true</span>;</div><div class="line">      <span class="comment">//inPurgeable 设为True的话表示使用BitmapFactory创建的Bitmap用于存储Pixel的内存空间在系统内存不足时可以被回收</span></div><div class="line">      newOpts.inPurgeable = <span class="keyword">true</span>;</div><div class="line">      <span class="comment">//inInputShareable与inPurgeable一起使用，如果inPurgeable为false那该设置将被忽略，如果为true，那么它可以决定位图是否能够共享一个指向数据源的引用，或者是进行一份拷贝</span></div><div class="line">      newOpts.inInputShareable = <span class="keyword">true</span>;</div><div class="line">      Bitmap bitmap = BitmapFactory.decodeFile(srcPath, newOpts);<span class="comment">//此时返回bm为空</span></div><div class="line"></div><div class="line">      <span class="keyword">int</span> w = newOpts.outWidth;</div><div class="line">      <span class="keyword">int</span> h = newOpts.outHeight;</div><div class="line">      <span class="comment">//设置要压缩的图片的宽高限制</span></div><div class="line">      <span class="keyword">int</span> hh = IMAGE_MAX_SIZE;<span class="comment">//这里设置高度为800f</span></div><div class="line">      <span class="keyword">int</span> ww = IMAGE_MAX_SIZE;<span class="comment">//这里设置宽度为480f</span></div><div class="line">      <span class="comment">//缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可</span></div><div class="line">      <span class="keyword">int</span> be = <span class="number">1</span>;<span class="comment">//be=1表示不缩放</span></div><div class="line">      <span class="keyword">if</span> (w &gt; h && w &gt; IMAGE_MAX_SIZE) {<span class="comment">//如果宽度大的话根据宽度固定大小缩放</span></div><div class="line">          be = (newOpts.outWidth / ww);</div><div class="line">      } <span class="keyword">else</span> <span class="keyword">if</span> (w &lt; h && h &gt; hh) {<span class="comment">//如果高度高的话根据宽度固定大小缩放</span></div><div class="line">          be = (newOpts.outHeight / hh);</div><div class="line">      }</div><div class="line">      <span class="keyword">if</span> (be &lt;= <span class="number">0</span>)</div><div class="line">          be = <span class="number">1</span>;</div><div class="line">      <span class="comment">//因为三星手机拍照后回自动在图片的Exif信息中写入旋转角度</span></div><div class="line">      <span class="comment">//虽然在手机里看到是正向的，但其实是横向的</span></div><div class="line">      <span class="comment">//根据Exif信息判断旋转方向，如果需要旋转，则重新旋转生成一张图片</span></div><div class="line">      <span class="keyword">int</span> rat = readImageExif(srcPath);</div><div class="line">      <span class="keyword">if</span> (rat == <span class="number">0</span>) {</div><div class="line">          BitmapFactory.Options newOpts2 = <span class="keyword">new</span> BitmapFactory.Options();</div><div class="line">          <span class="comment">//重新读入图片，注意此时已经把options.inJustDecodeBounds 设回false了</span></div><div class="line">          newOpts2.inJustDecodeBounds = <span class="keyword">false</span>;</div><div class="line">          newOpts2.inPurgeable = <span class="keyword">true</span>;</div><div class="line">          newOpts2.inInputShareable = <span class="keyword">true</span>;</div><div class="line">          newOpts2.inSampleSize = be;<span class="comment">//设置缩放比例</span></div><div class="line">          bitmap = BitmapFactory.decodeFile(srcPath, newOpts2);</div><div class="line">      }<span class="keyword">else</span>{</div><div class="line">          BitmapFactory.Options newOpts2 = <span class="keyword">new</span> BitmapFactory.Options();</div><div class="line">          newOpts2.inJustDecodeBounds = <span class="keyword">false</span>;</div><div class="line">          newOpts2.inPurgeable = <span class="keyword">true</span>;</div><div class="line">          newOpts2.inInputShareable = <span class="keyword">true</span>;</div><div class="line">          newOpts2.inSampleSize = be;<span class="comment">//设置缩放比例</span></div><div class="line">          bitmap = BitmapFactory.decodeFile(srcPath, newOpts2);</div><div class="line">          <span class="comment">//根据Exif信息判断旋转方向，如果需要旋转，则重新旋转生成一张图片</span></div><div class="line">          Matrix m=<span class="keyword">new</span> Matrix();</div><div class="line">          m.postRotate(rat);</div><div class="line">          <span class="comment">//这里的源bitmap要用压缩好的</span></div><div class="line">          bitmap = Bitmap.createBitmap(bitmap,<span class="number">0</span>,<span class="number">0</span>,bitmap.getWidth(),bitmap.getHeight(),m,<span class="keyword">false</span>);</div><div class="line">      }</div><div class="line">      <span class="keyword">return</span> bitmap;</div><div class="line">  }</div></pre></td></tr></table></figure>
+
+<h5 id="保存压缩图片代码">保存压缩图片代码</h5>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="javadoc">/**</span></div><div class="line">    * 保存方法</div><div class="line">    */</div><div class="line">   <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">saveCompressedImage</span>(String srcPath) <span class="keyword">throws</span> IOException {</div><div class="line"></div><div class="line">       Bitmap bm = getimage(srcPath);</div><div class="line">       String filePath = PHOTO_TEMP_DIR;</div><div class="line">       File dir = <span class="keyword">new</span> File(filePath);</div><div class="line">       <span class="keyword">if</span> (!dir.exists()) {</div><div class="line">           dir.mkdirs();</div><div class="line">       }</div><div class="line">       String fileName = getTempPhotoFilename();</div><div class="line"></div><div class="line">       File f = <span class="keyword">new</span> File(filePath, fileName);</div><div class="line"></div><div class="line">       <span class="keyword">if</span> (f.exists()) {</div><div class="line">           f.delete();</div><div class="line">       }</div><div class="line">       FileOutputStream out = <span class="keyword">null</span>;</div><div class="line">       <span class="keyword">try</span> {</div><div class="line">           out = <span class="keyword">new</span> FileOutputStream(f);</div><div class="line">           bm.compress(Bitmap.CompressFormat.JPEG, <span class="number">85</span>, out);</div><div class="line"></div><div class="line">           <span class="keyword">return</span> filePath + File.separator + fileName;</div><div class="line">       } <span class="keyword">catch</span> (FileNotFoundException e) {</div><div class="line">           e.printStackTrace();</div><div class="line">       } <span class="keyword">catch</span> (IOException e) {</div><div class="line">           e.printStackTrace();</div><div class="line">       } <span class="keyword">finally</span> {</div><div class="line">           <span class="comment">//回收Bitmap</span></div><div class="line">           <span class="keyword">if</span> (<span class="keyword">null</span> != bm && !bm.isRecycled()) {</div><div class="line">               bm.recycle();</div><div class="line">               System.gc();</div><div class="line">           }</div><div class="line">           <span class="keyword">try</span> {</div><div class="line">               out.flush();</div><div class="line">               out.close();</div><div class="line">           } <span class="keyword">catch</span> (IOException e) {</div><div class="line">               e.printStackTrace();</div><div class="line">           }</div><div class="line">       }</div><div class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">   }</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/02/28/Unable-to-add-window/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Unable to add window</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Android图片处理事项" data-title="Android图片处理事项" data-url="http://hounychang.github.io/2015/03/04/Android图片处理事项/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Houny Chang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>
