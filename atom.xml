@@ -4,7 +4,7 @@
   <subtitle><![CDATA[All in my heart.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://hounychang.github.io/"/>
-  <updated>2015-03-10T02:45:07.098Z</updated>
+  <updated>2015-03-10T02:48:53.908Z</updated>
   <id>http://hounychang.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://hounychang.github.io/2015/03/10/update-package-missing-system-img/"/>
     <id>http://hounychang.github.io/2015/03/10/update-package-missing-system-img/</id>
     <published>2015-03-10T02:06:13.000Z</published>
-    <updated>2015-03-10T02:45:01.000Z</updated>
+    <updated>2015-03-10T02:48:46.000Z</updated>
     <content type="html"><![CDATA[<p>  在这里讲告诉大家怎么手动为Nexus系列手机刷入Google官方Rom，并解决刷5.0或5.1过程中遇到的“update package missing system.img”错误。<br><a id="more"></a></p>
 <h2 id="资源">资源</h2>
 <ol>
@@ -54,41 +54,25 @@
 </blockquote>
 <h4 id="具体步骤：">具体步骤：</h4>
 <ol>
-<li>刷入 Bootloader &amp; Radio<br> 打开命令行，进入解压工厂镜像的目录（如果解压工厂镜像的目录在 C:\android，则在命令行中输入「pushd C:\android」），依次输入以下命令：</li>
+<li><p>刷入 Bootloader &amp; Radio<br> 打开命令行，进入解压工厂镜像的目录（如果解压工厂镜像的目录在 C:\android，则在命令行中输入「pushd C:\android」），依次输入以下命令：<br> <code>fastboot flash bootloader &lt;bootloader文件名&gt;.img</code></p>
+<blockquote>
+<p>注：由于每种设备的 bootloader 和 radio 文件名都不同，在操作时请将文件名换为对应的文件名。</p>
+</blockquote>
+<p> 如果你的设备是手机或支持移动网络的平板设备，你还需要刷入 radio：</p>
+<p> <code>fastboot flash radio &lt;radio文件名&gt;.img</code></p>
+</li>
+<li><p>重启设备至 Bootloader<br> <code>fastboot reboot-bootloader</code></p>
+</li>
+<li><p>依次刷入其他镜像文件<br> 重启完毕后，请依次刷入 recovery、boot、system 镜像文件<br> <code>fastboot flash recovery recovery.img</code><br> <code>fastboot flash boot boot.img</code><br> <code>fastboot flash system system.img</code></p>
+<blockquote>
+<p>Nexus 9 用户在完成以上几步后，还需要刷入 vendor.img，命令如下：<br>fastboot flash vendor vendor.img</p>
+</blockquote>
+</li>
+<li><p>清除用户数据<br> <code>fastboot flash cache cache.img</code><br> <code>fastboot flash userdata userdata.img</code></p>
+</li>
+<li><p>再次重启<br> <code>fastboot reboot</code></p>
+</li>
 </ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fastboot flash bootloader <span class="tag">&lt;<span class="title">bootloader文件名</span>&gt;</span>.img</div></pre></td></tr></table></figure>
-
-<pre><code><span class="blockquote">&gt; 注：由于每种设备的 bootloader 和 radio 文件名都不同，在操作时请将文件名换为对应的文件名。</span>
-
-如果你的设备是手机或支持移动网络的平板设备，你还需要刷入 radio：
-</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fastboot flash radio <span class="tag">&lt;<span class="title">radio文件名</span>&gt;</span>.img</div></pre></td></tr></table></figure>
-
-
-<ol>
-<li>重启设备至 Bootloader</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">fastboot</span> reboot-bootloader</div></pre></td></tr></table></figure>
-
-
-<ol>
-<li>依次刷入其他镜像文件<br> 重启完毕后，请依次刷入 recovery、boot、system 镜像文件</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fastboot flash recovery recovery.img</div><div class="line">fastboot flash boot boot.img</div><div class="line">fastboot flash <span class="built_in">system</span> <span class="built_in">system</span>.img</div></pre></td></tr></table></figure>
-
-<pre><code><span class="input"><span class="prompt">&gt; Nexus 9 用户在完成以上几步后，还需要刷入 vendor.img，命令如下：
-&gt;</span> fastboot flash vendor vendor.img</span>
-</code></pre><ol>
-<li>清除用户数据</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fastboot flash <span class="operator"><span class="keyword">cache</span> <span class="keyword">cache</span>.img</span></div><div class="line">fastboot flash userdata userdata.img</div></pre></td></tr></table></figure>
-
-
-
-<ol>
-<li>再次重启</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">fastboot</span> reboot</div></pre></td></tr></table></figure>
-
 ]]></content>
     <summary type="html">
     <![CDATA[<p>  在这里讲告诉大家怎么手动为Nexus系列手机刷入Google官方Rom，并解决刷5.0或5.1过程中遇到的“update package missing system.img”错误。<br>]]>
