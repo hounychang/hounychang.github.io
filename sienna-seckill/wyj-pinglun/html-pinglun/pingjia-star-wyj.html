@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title></title>
+    <link rel="stylesheet" href="../css-pinglun/pingjia-star-wyj.css">
+    <script src="../js-pinglun/jquery-1.5.1.js" type="text/javascript"></script>
+    <script src="../js-pinglun//jquery.raty.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="wyj-car-detail-content">
+    这是车辆详情,引用他人代码的
+</div>
+<div class="wyj-car-fgx"></div>
+
+<div class="wyj-car-center">
+<div id="wyj-car-cheliangzhuangtai" class="wyj-car-star-div">
+    <div class="wyj-car-star-title">车辆状况:</div>
+    <div id="star1" class="wyj-car-stars"></div>
+    <div id="result1"></div>
+</div>
+<div id="wyj-car-fahuotaidu" class="wyj-car-star-div">
+    <div class="wyj-car-star-title">发货态度:</div>
+    <div id="star2" class="wyj-car-stars"></div>
+    <div id="result2"></div>
+</div>
+<div id="wyj-car-fuwutaidu" class="wyj-car-star-div">
+    <div class="wyj-car-star-title">服务态度:</div>
+    <div id="star3" class="wyj-car-stars"></div>
+    <div id="result3"></div>
+</div>
+</div>
+<textarea class="wyj-car-pingjia-text" placeholder="说点什么吧,以便我们更好的为您服务"></textarea>
+<div>
+    <button class="wyj-car-tijiaobnt"  onclick="alert('tijiao')">提交</button>
+</div>
+
+<script type="text/javascript">
+    rat('star1','result1',1);
+    rat('star2','result2',1);
+    rat('star3','result2',1);
+    function rat(star,result,m){
+
+        star= '#' + star;
+        result= '#' + result;
+        $(result).hide();//将结果DIV隐藏
+
+        $(star).raty({
+            hints: ['10','20', '30', '40', '50','60', '70', '80', '90', '100'],
+            path: "../wyj-img",
+            starOff: 'rate_star_empty.png',
+            starOn: 'rate_star_full.png',
+            start: 0,
+            width:200,
+            showHalf: true,
+            target: result,
+            targetKeep : true,//targetKeep 属性设置为true，用户的选择值才会被保持在目标DIV中，否则只是鼠标悬停时有值，而鼠标离开后这个值就会消失
+            click: function (score, evt) {
+                //第一种方式：直接取值
+//			alert('你的评分是'+score*m+'分');
+            }
+        });
+
+        /*第二种方式可以设置一个隐蔽的HTML元素来保存用户的选择值，然后可以在脚本里面通过jQuery选中这个元素来处理该值。 弹出结果
+         var text = $(result).text();
+         $('img').click(function () {
+         if ($(result).text() != text) {
+         alert('你的评分是'+$(result).text()/m+'分');
+         alert(result);
+         return;
+         }
+         });*/
+    }
+</script>
+
+
+</body>
+</html>

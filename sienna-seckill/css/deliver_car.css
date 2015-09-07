@@ -1,0 +1,101 @@
+body {
+    font-family: "microsoft yahei", Arial, Helvetica, sans-serif;;
+}
+
+.zhn_deliver_layout_incoming {
+    height: 110px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+
+}
+
+.zhn_deliver_img_incoming_car {
+    width: 56px;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 36px 0px 11px 0px;
+
+}
+
+.zhn_deliver_incoming_msg {
+    color: #3e3f43;
+    font-size: 16px;
+}
+
+.zhn_deliver_layout_info {
+    width: 100%;
+    height: 110px;
+    text-align: left;
+    border-top: solid #d6d6d6 1px;
+    border-bottom: solid #d6d6d6 1px;
+}
+
+.zhn_deliver_call_phone {
+    width: 38px;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    float: right;
+    margin: 10px 23px 10px 10px;
+}
+
+.zhn_deliver_info_tip {
+    text-align: left;
+    color: #3e3f43;
+    font-size: 17px;
+    margin-top: 16px;
+    margin-left: 22px;
+}
+
+.zhn_deliver_info_time {
+    margin-left: 22px;
+    font-size: 14px;
+    color: #a6a6a6;
+    margin-top: 15px;
+}
+
+.zhn_deliver_info_position {
+    margin-left: 22px;
+    font-size: 14px;
+    color: #a6a6a6;
+    margin-top: 11px;
+}
+
+.zhn_deliver_btn_confirm {
+    width: 95%;
+    height: 38px;
+    background: url("../img/login_button_bg.png") repeat;
+    background-size: cover;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 15px;
+
+}
+
+.zhn_deliver_layout_confirm {
+    text-align: center;
+    margin-bottom: 73px;
+}
+
+.zhn_bottom_layout {
+    background-color: #eeeeee;
+    z-index: 2;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    _position: absolute;
+    height: 63px;
+}
+
+.zhn_bottom_server_img {
+    width: 203px;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+    top: 30%;
+}

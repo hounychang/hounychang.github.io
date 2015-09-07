@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title></title>
+    <link rel="stylesheet" href="css/alert.css">
+</head>
+<body>
+<input type="button" onclick="showAlert('alert','hello','you got an error')" value="show">
+
+<div id="alert" style="display: none">
+    <div class="alert">
+        <div id="alert-close" class="close-button" onclick="closeAlert('alert')"></div>
+        <div id="alert-tittle" class="alert-tittle"></div>
+        <div id="alert-message" class="alert-content"></div>
+        <div>
+            <input type="button" class="alert-gray" style="margin-left: 20px;" value="退出" onclick="closeAlert('alert')">
+            <input type="button" class="alert-yellow" style="margin-left: 130px;" value="去支付" onclick="closeAlert('alert')">
+        </div>
+    </div>
+    <div id="alert-bg" class="alert-bg"></div>
+</div>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/alert.js"></script>
+</html>

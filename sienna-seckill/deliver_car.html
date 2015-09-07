@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>送车上门</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./css/base.css"/>
+    <link rel="stylesheet" href="./css/confirm.css" data-inline>
+    <link rel="stylesheet" href="./css/deliver_car.css"/>
+    <link rel="stylesheet" href="./css/alert.css">
+</head>
+<body>
+    <div class="content">
+        <!-- 进度条 -->
+        <div class="confirm-progress">
+            <ul class="pay_loading_progress">
+                <li class="tips past"><i></i></li>
+                <li class="line"><i></i></li>
+                <li class="tips past"><i></i></li>
+                <li class="line"><i></i></li>
+                <li class="tips past"><i></i></li>
+                <li class="line"><i></i></li>
+                <li class="tips active"><i></i></li>
+            </ul>
+            <ul class="pay_loading_title">
+                <li class="first_title title">
+                    <b>在线下单</b>
+                </li>
+                <li class="tips title">
+                    <b>支付定金</b>
+                </li>
+                <li class="tips title">
+                    <b>客服确认</b>
+                </li>
+                <li class="last_title title active">
+                    <b>送车上门</b>
+                </li>
+            </ul>
+        </div>
+        <!-- 进度条 -->
+        <div class="zhn_deliver_layout_incoming">
+            <img src="./img/car_incoming.png" alt="car incoming" class="zhn_deliver_img_incoming_car"/>
+            <p class="zhn_deliver_incoming_msg">汽车正在全速奔向你</p>
+        </div>
+        <div class="zhn_deliver_layout_info">
+            <a href="tel:4008190066"><img src="./img/call_phone_icon.png" alt="call phone" class="zhn_deliver_call_phone"/></a>
+            <p class="zhn_deliver_info_tip">您的专属管家已出发为您配送</p>
+            <p class="zhn_deliver_info_time">送达时间：预计  9月30日(周四)</p>
+            <p class="zhn_deliver_info_position">送达地点：回龙观西大街东亚上北回龙观小区</p>
+        </div>
+        <div class="zhn_deliver_layout_confirm pl-auto pr-auto mt15">
+            <input id="submitButton" type="button" onclick="showAlert('zhn_confirm_receive_alert','确认提示','您确认已收到车了吗？')" class="zhn_deliver_btn_confirm" value="确认已收到车"/>
+        </div>
+        <div class="zhn_bottom_layout tc">
+
+            <a href="tel:4008190066"><img src="./img/server_phone.png" alt="server" class="zhn_bottom_server_img"/></a>
+        </div>
+    </div>
+    <div id="zhn_confirm_receive_alert" style="display: none">
+        <div class="alert">
+            <div id="zhn_confirm_receive_alert-close" class="close-button" onclick="closeAlert('zhn_confirm_receive_alert')"></div>
+            <div id="zhn_confirm_receive_alert-tittle" class="alert-tittle"></div>
+            <div id="zhn_confirm_receive_alert-message" class="alert-content"></div>
+            <div>
+                <input type="button" class="alert-gray" style="margin-left: 20px;" value="取消" onclick="closeAlert('zhn_confirm_receive_alert')">
+                <input type="button" class="alert-yellow" style="margin-left: 130px;" value="确认" onclick="confirmAlert('zhn_confirm_receive_alert')">
+            </div>
+        </div>
+        <div id="zhn_confirm_receive_alert-bg" class="alert-bg"></div>
+    </div>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/alert.js"></script>
+<script>
+    function confirmAlert(alert) {
+        $("#" + alert).hide();
+        //TODO Ajax确认接口
+    }
+</script>
+</body>
+
+</html>

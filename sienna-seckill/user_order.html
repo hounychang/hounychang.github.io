@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./css/base.css"/>
+    <link rel="stylesheet" href="./css/order.css"/>
+</head>
+<body>
+<div class="zhn_content">
+    <div class="zhn_order_list_title">
+        订单信息
+    </div>
+    <div class="zhn_order zhn_border_top_bottom">
+        <div class="zhn_behind_item">
+            <div class="zhn_behind_item">
+                <span class="zhn_delete">删除</span>
+            </div>
+        </div>
+        <div class="zhn_swipe_item">
+            <div class="zhn_order_info_title">
+                <span class="zhn_order_info_id">订单编号:1234567890123456789012</span>
+                <span class="zhn_order_info_status display_not">待支付订金</span>
+            </div>
+            <div class="zhn_order_info_car">
+                <div class="zhn_order_info_car_top">
+                    <span class="zhn_order_info_car_name">
+                        2015款丰田(加规)Sienna3.5L两驱LE
+                    </span>
+                    <span class="zhn_order_car_type">
+                        真皮限量版
+                    </span>
+                </div>
+                <div class="zhn_order_info_car_detail">
+                    <div class="zhn_order_info_car_img">
+                        <img src="./img/car_default.png" alt="car image" class="zhn_car_img"/>
+                    </div>
+
+                    <div class="zhn_order_info_car_other">
+                        <div class="zhn_order_info_car_scheme">
+                            购车方案：一口价（每人限购一辆）
+                        </div>
+                            <span class="zhn_order_info_car_color">外观（<span class="zhn_round_empty"></span>超级白）+内饰（<span class="zhn_round_solid"></span>水晶灰）</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="zhn_order zhn_border_top_bottom">
+        <div class="zhn_behind_item">
+            <span class="zhn_delete">删除</span>
+        </div>
+        <div class="zhn_swipe_item">
+            <div class="zhn_order_info_title">
+                <span class="zhn_order_info_id">订单编号:1234567890123456789012</span>
+                <span class="zhn_order_info_status">待支付订金</span>
+            </div>
+            <div class="zhn_order_info_car">
+                <div class="zhn_order_info_car_top">
+                    <span class="zhn_order_info_car_name">
+                        2014款丰田(加规)Sienna3.5L两驱LE
+                    </span>
+                    <span class="zhn_order_car_type">
+                        真皮限量版
+                    </span>
+                </div>
+                <div class="zhn_order_info_car_detail">
+                    <div class="zhn_order_info_car_img">
+                        <img src="./img/car_default.png" alt="car image" class="zhn_car_img"/>
+                    </div>
+
+                    <div class="zhn_order_info_car_other">
+                        <div class="zhn_order_info_car_scheme">
+                            购车方案：一口价（每人限购一辆）
+                        </div>
+                        <span class="zhn_order_info_car_color">外观（<span class="zhn_round_empty"></span>超级白）+内饰（<span class="zhn_round_solid"></span>水晶灰）</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./js/zepto.min.js"></script>
+<script>
+    $(".zhn_swipe_item").swipeLeft(
+            function(e){
+                $(this).animate({"left":"-60px"}, 300, 'ease-out');
+            }
+    );
+    $(".zhn_swipe_item").swipeRight(
+            function(e){
+                $(this).animate({"left":"0px"}, 300, 'ease-out');
+            }
+    );
+
+    $(".zhn_delete").click(function(){
+//        var behinditems=$(this).parent(".zhn_behind_item");
+//        console.log(behinditems);
+//        var behindItem = behinditems[0];
+//        console.log(behindItem);
+//        var orderItems = behindItem.parent(".zhn_order");
+//        console.log(orderItems);
+//        var orderItem = orderItems[0];
+//        console.log(orderItem);
+        var orderItem = $(this).parents(".zhn_order")[0];
+        console.log(orderItem);
+        removeItem(orderItem);
+
+//       removeItem($(this).parent(".zhn_behind_item").parent(".zhn_order"));
+    });
+
+    function removeItem(arg){
+        arg.remove();
+    }
+</script>
+</body>
+</html>

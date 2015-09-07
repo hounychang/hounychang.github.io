@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单确认· 好车驾到</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- Define a description for better SEO result -->
+    <link rel="stylesheet" href="./css/base.css"/>
+    <!-- <link rel=stylesheet href="./css/app.css" data-inline> -->
+    <link rel=stylesheet href="./css/confirm.css" data-inline>
+    <link rel="stylesheet" href="./css/order.css"/>
+    <!-- Canonical links, avoid duplicate content problems -->
+<body class="confirm-body">
+    <div class="confirm-container">
+        <!-- 进度条 -->
+        <div class="confirm-progress">
+            <ul class="pay_loading_progress">
+                <li class="tips past"><i></i></li>
+                <li class="line"><i></i></li>
+                <li class="tips past"><i></i></li>
+                <li class="line"><i></i></li>
+                <li class="tips active"><i></i></li>
+                <li class="line"><i></i></li>
+                <li class="tips"><i></i></li>
+            </ul>
+            <ul class="pay_loading_title">
+                <li class="first_title title">
+                    <b>在线下单</b>
+                </li>
+                <li class="tips title">
+                    <b>支付定金</b>
+                </li>
+                <li class="tips title active">
+                    <b>客服确认</b>
+                </li>
+                <li class="last_title title">
+                    <b>送车上门</b>
+                </li>
+            </ul>
+        </div>
+        <!-- 进度条 -->
+        <!-- 支付成功 -->
+        <div class="confirm-success">
+            <img src="./img/confirmicon.png">
+            <p class="confirm-success-title f13 conf-normal-color">支付成功，订单已生效</p>
+            <p class="confirm-success-content conf-gray-color">稍后会有工作人员主动联系您，请耐心等待</p>
+        </div>
+        <!-- 购车基本信息 -->
+        <div class="confirm-purchased-info">
+            <div class="confirm-purchased-title f13 conf-gray-color">
+                <p>购车基本信息</p>
+            </div>
+            <div class="confirm-car-info">
+                <div class="zhn_order zhn_border_top_bottom confirm-car-info" style="margin-bottom:0px;height:100px;">
+                    <div class="zhn_swipe_item">
+                        <div class="zhn_order_info_car">
+                            <div class="zhn_order_info_car_top">
+                                <span class="zhn_order_info_car_name">
+                                    2015款丰田(加规)Sienna3.5L两驱LE
+                                </span>
+                                <span class="zhn_order_car_type">
+                                    真皮限量版
+                                </span>
+                            </div>
+                            <div class="zhn_order_info_car_detail">
+                                <div class="zhn_order_info_car_img">
+                                    <img src="./img/car_default.png" alt="car image" class="zhn_car_img"/>
+                                </div>
+
+                                <div class="zhn_order_info_car_other">
+                                    <div class="zhn_order_info_car_scheme">
+                                        购车方案：一口价（每人限购一辆）
+                                    </div>
+                                    <span class="zhn_order_info_car_color">外观（<span class="zhn_round_empty"></span>超级白）+内饰（<span class="zhn_round_solid"></span>水晶灰）</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="confirm-person-info">
+                <p class="confirm-person-cell f13 conf-gray-color">收货人:<span style="color:#000;">李孝利</span></p>
+                <p class="confirm-person-cell f13 conf-gray-color">联系方式:<span style="color:#000;">15888888888</span></p>
+                <p class="confirm-person-cell f13 conf-gray-color">送货地址:<span style="color:#000;">北京市朝阳区北京市</span></p>
+            </div>
+        </div>
+        <!-- 购车基本信息 -->
+        <!-- 费用详情 -->
+        <div class="confirm-fee">
+            <div class="confirm-purchased-title bottomline f13 conf-gray-color">
+                <p>费用详情</p>
+            </div>
+            <div class="confirm-fee-detail">
+                <div class="confirm-fee-cell">
+                    <div class="confirm-fee-title f13 conf-normal-color">2015款丰田(加规)Sienna 3.5L 两驱</div>
+                    <div class="confirm-fee-money f13 conf-normal-color">$10000</div>
+                </div>
+                <div class="confirm-fee-cell">
+                    <div class="confirm-fee-vouch f13 conf-gray-color">
+                        <span>质保(价值￥6000)</span>
+                    </div>
+                    <div class="confirm-fee-img">
+                        <span>赠送</span>
+                    </div>
+                    <div class="confirm-fee-money f13 conf-gray-color">$0</div>
+                </div>
+                <div class="confirm-fee-cell">
+                    <div class="confirm-fee-vouch f13 conf-gray-color">
+                        <span>运费(价值￥4000)</span>
+                    </div>
+                    <div class="confirm-fee-img">
+                        <span>赠送</span>
+                    </div>
+                    <div class="confirm-fee-money f13 conf-gray-color">$0</div>
+                </div>
+                <div class="confirm-fee-cell">
+                    <div class="confirm-fee-title f13 conf-gray-color">
+                        <span>定金抵扣</span>
+                    </div>
+                    <div class="confirm-fee-money f13 conf-gray-color">-$10000</div>
+                </div>
+                <div class="confirm-fee-cell">
+                    <div class="confirm-fee-title f13 conf-gray-color">
+                        <span>优惠券抵扣</span>
+                    </div>
+                    <div class="confirm-fee-money f13 conf-gray-color">-$10000</div>
+                </div>
+                <div class="confirm-fee-cell">
+                    <div class="confirm-fee-title f14 conf-normal-color">
+                        <span>面对面支付</span>
+                    </div>
+                    <div class="confirm-fee-money f14 confirm-pay-color">$1320000</div>
+                </div>
+            </div>
+            <div class="confirm-fee-ext">
+                <div class="confirm-mark f12 conf-normal-color">
+                    <span class="">备注：</span><span class="conf-gray-color">所涉及到其他费用如购置税，上牌费用等，还需要您自己缴纳</span>
+                </div>
+            </div>
+        </div>
+        <!-- 费用详情 -->
+        <div class="confirm-footer">
+            <img src="./img/server_phone.png" alt=""/>
+        </div>
+    </div>
+</body>

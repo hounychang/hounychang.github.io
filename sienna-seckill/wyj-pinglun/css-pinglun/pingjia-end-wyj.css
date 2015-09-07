@@ -1,0 +1,67 @@
+@charset "utf-8";
+html {
+    font-size: 10px;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    background-color: white;
+    text-align: center;
+}
+.wyj-car-detail-content {
+    height: 100px;
+    width: 100%;
+
+}
+.wyj-car-fgx {
+
+    background-color: rgb(234,234,234);
+    height: 30px;
+    border-top: 1px  rgb(205,205,205) double;
+    border-bottom: 1px  rgb(205,205,205) double;
+}
+.wyj-car-center {
+    padding-top: 30px;
+    width: 270px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.3rem;
+
+}
+.wyj-car-star-title {
+    margin-top: 4px;
+    width: 70px;
+    float: left;
+}
+.wyj-car-stars {
+    width: 200px;
+    float: left;
+}
+.wyj-car-stars  img{
+    width: 18px;
+    height: 18px;
+    padding-left: 9px;
+    padding-right: 9px;
+}
+#wyj-car-cheliangzhuangtai {
+
+}
+.wyj-car-star-div {
+    width: 100%;
+    height: 40px;
+    /*text-align: right;*/
+}
+.wyj-car-pingjia-text {
+
+    height: 80px;
+    width: 274px;
+    line-height: 1.5rem;
+    font-size: 1.3rem;
+    /*color: rgb(193,193,193);*/
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+}
+

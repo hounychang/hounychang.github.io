@@ -1,0 +1,151 @@
+.x-car-detail-title {
+    font-size: 14px;
+    margin-top: 5px;
+    height: 20px;
+    margin-bottom: 5px;
+}
+.x-car-detail-tag{
+    color: #777777;
+    display: inline;
+    margin-right: 4px;
+}
+.x-car-detail-spot-goods {
+    background-color: #ff680d;
+    color: #fff;
+    padding:2px;
+    font-size: 14px;
+    margin-right: 2px;
+}
+.x-orange-color{
+    color: #ff680d;
+}
+.x-detail-item{
+    overflow: hidden;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.x-car-detail-goods-color{
+    color: #cccccc;
+    margin-bottom: 8px;
+    padding-right: 8px;
+    padding-left: 8px;
+    height: 30px;
+    line-height: 26px;
+    border: 2px #cccccc solid;
+    border-radius: 4px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+.x-car-detail-goods-color.selected {
+    color: #3394f2;
+    border: 2px #3394f2 solid;
+    border-radius: 4px;
+    color: #3394f2;
+}
+.x-car-color{
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow:0 1px 1px #cccccc;
+    -moz-box-shadow:0 1px 1px #cccccc;
+    box-shadow:0 1px 1px #cccccc;
+}
+.x-car-detail-fixed-bottom{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    right: 0;
+    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1);
+    background: #fff;
+    z-index: 1000;
+}
+.x-car-detail-reserve-btn{
+    width: 180px;
+    height: 100%;
+    color: #ffffff;
+    line-height: 60px;
+    text-align: right;
+    padding-right: 5px;
+    border: none;
+    background-image: url("../img/reservebutton235x89.png");
+}
+.x-car-detail-fixed-bottom img{
+    height: 60px;
+}
+.x-car-detail-fixed-padding{
+    padding-bottom: 60px;
+}
+@media (max-width: 767px) {
+    .x-car-detail-fixed-bottom{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 45px;
+        right: 0;
+        box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1);
+        background: #fff;
+        z-index: 1000;
+    }
+    .x-car-detail-reserve-btn{
+        width: 135px;
+        height: 100%;
+        color: #ffffff;
+        line-height: 45px;
+        text-align: right;
+        padding-right: 5px;
+        border: none;
+        background-image: url("../img/reservebutton235x89.png");
+    }
+    .x-car-detail-fixed-bottom img{
+        height: 45px;
+    }
+    .x-car-detail-fixed-padding{
+        padding-bottom: 45px;
+    }
+}
+.x-car-detail-reserve-btn.disable{
+    background-image: url("../img/reservedisabledbutton235x89.png");
+}
+.x-car-purchase-info-img{
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.x-car-purchase-info-item{
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 12px;
+    color: #777777;
+    text-align: left;
+}
+.x-car-purchase-info-item.item-text{
+    line-height: 20px;
+}
+.carBuy-step1>strong, .carBuy-step2>span, .carBuy-step3>strong {
+    display: block;
+    height: 3em;
+    padding-top: 0px;
+}
+@media (max-width: 767px){
+    .carBuy-step1>strong, .carBuy-step2>span, .carBuy-step3>strong {
+        display: block;
+        height: 4.5em;
+    }
+}
+.x-questiontitle-menu-title{
+    color: #cccccc;
+    font-size: 12px;
+}
+.x-questiontitle-menu-content{
+    color: #999999;
+    font-size: 14px;
+}
+.x-image-clear{
+    display: block;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+}

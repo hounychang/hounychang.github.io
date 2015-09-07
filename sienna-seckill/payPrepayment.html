@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>支付定金</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/order.css">
+    <link rel="stylesheet" href="css/confirm.css" data-inline>
+    <link rel="stylesheet" href="css/car-detail.css" data-inline>
+    <link rel="stylesheet" href="css/alert.css">
+    <link rel="stylesheet" href="css/payPrepayment.css">
+</head>
+<body>
+<div style="width: 100%">
+    <div class="confirm-progress">
+        <ul class="pay_loading_progress">
+            <li class="tips past"><i></i></li>
+            <li class="line"><i></i></li>
+            <li class="tips active"><i></i></li>
+            <li class="line"><i></i></li>
+            <li class="tips"><i></i></li>
+            <li class="line"><i></i></li>
+            <li class="tips"><i></i></li>
+        </ul>
+        <ul class="pay_loading_title">
+            <li class="first_title title">
+                <b>在线下单</b>
+            </li>
+            <li class="tips title active">
+                <b>支付定金</b>
+            </li>
+            <li class="tips title">
+                <b>客服确认</b>
+            </li>
+            <li class="last_title title">
+                <b>送车上门</b>
+            </li>
+        </ul>
+    </div>
+    <div class="zhn_order_list_title" style="height: 26px">
+        <div style="float:left;">购车基本信息</div>
+        <div style="float: right; text-align: right; color: #3394f2; margin-right: 15px"
+             onclick="showAlert('color', '选择颜色', null)">
+            修改颜色
+        </div>
+    </div>
+    <div class="zhn_order zhn_border_top_bottom" style="height: 96px;margin-bottom: 0;">
+        <div class="zhn_swipe_item" style="height: 96px;">
+            <div class="zhn_order_info_car">
+                <div class="zhn_order_info_car_top">
+                    <span class="zhn_order_info_car_name">
+                        2015款丰田(加规)Sienna3.5L两驱LE
+                    </span>
+                    <span class="zhn_order_car_type">
+                        真皮限量版
+                    </span>
+                </div>
+                <div class="zhn_order_info_car_detail">
+                    <div class="zhn_order_info_car_img">
+                        <img src="./img/car_default.png" alt="car image" class="zhn_car_img"/>
+                    </div>
+
+                    <div class="zhn_order_info_car_other">
+                        <div class="zhn_order_info_car_scheme">
+                            购车方案：一口价（每人限购一辆）
+                        </div>
+                        <!--<div class="zhn_order_info_car_color">-->
+                        <span class="zhn_order_info_car_color">外观（<span class="zhn_round_empty"></span>超级白）+内饰（<span
+                                class="zhn_round_solid"></span>水晶灰）</span>
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="zhn_order_list_title">完善收货信息</div>
+    <div class="form-style">
+        <div>
+            <div>
+                <span class="fl tl input-tittle input">收货人</span>
+                <span class="empty-span">&nbsp;</span>
+                <input id="name" class="input-text fl input" type="text" placeholder="收货人的姓名" required="required"/>
+            </div>
+            <div class="cb input-line"></div>
+        </div>
+        <div>
+            <div>
+                <span class="fl tl input-tittle input">收货人联系方式</span>
+                <span class="empty-span">&nbsp;</span>
+                <input id="phone" class="input-text fl input" type="text" placeholder="管家联系您的电话" required="required"/>
+            </div>
+            <div class="cb input-line"></div>
+        </div>
+        <div>
+            <div>
+                <span class="fl tl input-tittle input">送达地址</span>
+                <span class="empty-span">&nbsp;</span>
+                <input id="address" class="input-text fl input" type="text" placeholder="爱车送达的地址" required="required"/>
+            </div>
+            <div class="cb input-line"></div>
+        </div>
+    </div>
+
+    <div class="zhn_order_list_title">选择支付方式</div>
+    <div>
+        <div id="ali-div" class="pay-div" style="margin-left: 13%; margin-right: 7%;"><img id="ali-img"
+                                                                                           src="img/pay_ali_select.png"
+                                                                                           class="pay-img"></div>
+        <div id="wechat-div" class="pay-div" style="margin-left: 7%; margin-right: 13%;"><img id="wechat-img"
+                                                                                              src="img/pay_wechat_default.png"
+                                                                                              class="pay-img"></div>
+    </div>
+    <div>
+        <input type="button" id="pay" class="pay-button" value="支付定金 ￥2,999">
+    </div>
+    <!--输入校验警告框-->
+    <div id="inputErr" style="display: none">
+        <div class="alert">
+            <div id="inputErr-close" class="close-button" onclick="closeAlert('inputErr')"></div>
+            <div id="inputErr-tittle" class="alert-tittle"></div>
+            <div id="inputErr-message" class="alert-content"></div>
+            <div>
+                <input type="button" class="alert-yellow" style="margin-left: 75px;" value="确定"
+                       onclick="closeAlert('inputErr')">
+            </div>
+        </div>
+        <div id="inputErr-bg" class="alert-bg"></div>
+    </div>
+    <!--支付失败提示框-->
+    <div id="payErr" style="display: none">
+        <div class="alert">
+            <div id="payErr-close" class="close-button" onclick="closeAlert('payErr')"></div>
+            <div id="payErr-tittle" class="alert-tittle"></div>
+            <div id="payErr-message" class="alert-content"></div>
+            <div>
+                <input type="button" class="alert-yellow" style="margin-left: 20px;" value="退出"
+                       onclick="closeAlert('payErr')">
+                <input type="button" class="alert-yellow" style="margin-left: 20px;" value="去支付"
+                       onclick="closeAlert('payErr')">
+            </div>
+        </div>
+        <div id="payErr-bg" class="alert-bg"></div>
+    </div>
+    <!--修改颜色-->
+    <div id="color" style="display: none; height: 180px">
+        <div class="alert" style="height: 180px;">
+            <div id="color-close" class="close-button" onclick="closeAlert('color')"></div>
+            <div id="color-tittle" class="alert-tittle"></div>
+            <div id="color-message" class="col-sm-12 x-detail-item" style="font-size: 13px">
+                <div class="x-car-detail-goods-color">
+                    <span data-color="外观（宝石青）+内饰（威尼托米色）">外观（<a class="x-car-color" style="background-color: white"></a>超级白）+内饰（<a
+                            class="x-car-color" style="background-color: #cccccc"></a>水晶灰）</span>
+                </div>
+                <div class="x-car-detail-goods-color">
+                    <span data-color="外观（矿石灰）+内饰（黑色）">外观（<a class="x-car-color" style="background-color: black"></a>黑）+内饰（<a
+                            class="x-car-color" style="background-color: #eac27c"></a>真丝米）</span>
+                </div>
+            </div>
+            <div>
+                <input type="button" class="alert-blue" style="margin-left: 75px;" value="确定"
+                       onclick="closeAlert('color')">
+            </div>
+        </div>
+        <div id="color-bg" class="alert-bg"></div>
+    </div>
+</div>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/alert.js"></script>
+<script src="js/payPrepayment.js"></script>
+<script type="text/javascript">
+    function setPurchaseEnable() {
+        $(".x-car-detail-goods-color").bind("click", function () {
+            $(".x-car-detail-goods-color").removeClass("selected");
+            $(this).addClass("selected");
+        });
+        $("#x-for-sale").hide();
+    }
+    $(function (){
+        setPurchaseEnable();
+    })
+</script>
+</html>

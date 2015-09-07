@@ -1,0 +1,57 @@
+@charset "utf-8";
+html {
+    font-size: 10px;
+}
+/*车辆信息*/
+.wyj-car-info-detalie {
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.2rem;
+    background-color: green;
+    text-align: center;
+    width: 100%;
+    height: 102px;
+
+}
+/*车辆简介*/
+.wyj-car-info-detalie-jj{
+    padding-top: 14px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    /*background-color: red;*/
+}
+
+/*限量版文字样式*/
+.wyj-car-info-detalie-xlb {
+    background-color: rgb(43,127,238);
+    color: white;
+}
+/*车辆内容*/
+.wyj-car-info-detalie-content {
+    margin: 0px;
+    width: 285px;
+    height: 71px;
+    background-color: red;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+/*车辆图片样式*/
+.wyj-car-info-detalie-carimage {
+    padding: 15.5px 5px 0px 0px;
+    background-color: yellow;
+    float: left;
+
+}
+.wyj-car-info-detalie-cartext {
+    background-color: yellow;
+    width: 170px;
+    float: right;
+    padding-top: 15.5px;
+    font-size: 1.1rem;
+    text-align: left;
+}
+.wyj-car-info-detalie-gcfa {
+    /*color: yellow;*/
+    line-height: 0.2em;
+}
